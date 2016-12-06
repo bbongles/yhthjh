@@ -13,6 +13,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
+<script>
+$(document).ready(function(){
+	if ("${optionList }"!="[]"){
+		 $('#optionNullCheck').show();	
+    	}
+    })
+</script>
+
 	<style>
 	.preview {
 		width: 300px;
@@ -129,6 +137,7 @@
     			<input type="hidden" name="p_price" value="${productVO.p_price }" />
     			<span>구매량 : </span>
     			<input type="number" name="buy_cnt" value="1" /> 개<br/><br/>
+    			<div id="optionNullCheck" style="display: none;">
     			<span>옵션 : </span>
     	
     			<!-- 해당 상품의 옵션 정보를 뿌려줘야 함 -->
@@ -145,6 +154,7 @@
     				
     				</c:forEach>
     			</select>
+    			</div>
     			<br/><br/>
     			<input type="submit" value="장바구니 담기">
     			<input type="button" value="바로 구매" id="directOrder">
@@ -393,6 +403,12 @@
 <!-- #container -->
 	
 	<br/><br/>
+	<div>관련 상품</div>
+    <c:forEach var="relativeList" items="${relativeList}">
+    	<div style="text-align: center">
+    	<img src="${relativeList.p_img}" class="preview">
+    	</div> 
+    </c:forEach>
 	
 	<div id="detailMenu">
     	<input type="button" id="delProduct" value="상품삭제" />

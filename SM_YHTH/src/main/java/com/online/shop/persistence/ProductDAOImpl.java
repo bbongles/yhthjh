@@ -81,4 +81,10 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.delete(NAMESPACE + ".deleteProductByPno", p_no);
 	}
 	
+	// 김태훈
+	@Override
+	public List<ProductVO> selectProductCate(String p_cate2) {
+	return sqlSession.selectList(NAMESPACE+".selectCate2", p_cate2);
+	}
+	
 } // end class ProductDAOImpl

@@ -23,4 +23,7 @@ public interface ProductService {
 	public abstract int deleteImageByPno(int p_no);
 	public abstract int deleteProductByPno(int p_no);
 	
+	// 카테고리 검색 추가 by 김태훈
+	public abstract List<ProductVO> selectCate2(String p_cate2);
+	
 } // end interface ProductService

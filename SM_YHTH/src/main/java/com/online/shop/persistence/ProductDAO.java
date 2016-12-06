@@ -16,4 +16,7 @@ public interface ProductDAO {
 	public abstract int deleteImageByPno(int p_no);
 	public abstract int deleteProductByPno(int p_no);
 	
+	// 상품 카테고리 검색 추가 by 김태훈
+	public abstract List<ProductVO> selectProductCate(String p_cate2);
+	
 } // end interface ProductDAO
