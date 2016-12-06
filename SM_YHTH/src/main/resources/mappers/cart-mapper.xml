@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL 문장들을 작성하는 XML 파일 -->
+<mapper namespace="com.online.shop.CartMapper">
+
+	<!-- 주문번호를 제외한 장바구니 테이블에 인서트, 주문번호는 주문 버튼 클릭하면 넣기 -->
+	<insert id="cart-insert">
+		  insert into s_tbl_cart(b_id, p_no, p_name, p_price, buy_cnt, o_cont, p_img, s_id)
+         values(#{b_id}, #{p_no}, #{p_name}, #{p_price}, #{buy_cnt}, #{o_cont}, #{p_img}, #{s_id})
+	</insert> 
+	
+<!-- 	<insert id="cart-insert">
+		  insert into s_tbl_cart(b_id, p_no, p_name, p_price, buy_cnt, o_cont, s_id)
+         values(#{b_id}, #{p_no}, #{p_name}, #{p_price}, #{buy_cnt}, #{o_cont}, #{s_id})
+	</insert>
+	 -->
+	<!-- 카트리스트 불러오기.. 단, 주문번호가 없는것만(삭제방지) -->
+	<select id="cart-select-by-b_id" resultType="CartVO">
+		select * from s_tbl_cart where b_id = #{b_id} and buy_no is null
+	</select>
+	
+	<select id="cart-select-by-c_no" resultType="CartVO">
+		select * from s_tbl_cart where c_no = #{c_no}
+	</select>
+
+	<delete id="cart-delete">
+		delete from s_tbl_cart where c_no = #{c_no} 
+	</delete>
+	
+	<update id="cart-update-buy_cnt">
+		update s_tbl_cart set buy_cnt = #{buy_cnt} where c_no = #{c_no}
+	</update>
+	
+	<update id="cart-update-buy_no">
+		update s_tbl_cart set buy_no = #{buy_no} where c_no = #{c_no}
+	</update>
+	
+	<select id="cartImageByPno" resultType="ProductVO">
+	select * from s_tbl_product where p_no = (select p_no from s_tbl_cart where c_no = #{c_no})
+	</select>
+	
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- SQL 문장들을 작성하는 XML 파일 -->
+ <mapper namespace="com.online.shop.BuyerMapper">
+ 
+      <!-- INSERT SQL문 --> 				<!-- #{} : 스프링에서 사용하는 EL -->
+     <insert id="buyer-insert">
+         insert into s_tbl_buyer(b_id, b_pw, b_name, b_gender, b_birth, b_phone, b_email, b_zip, b_addr1, b_addr2)
+         values(#{b_id}, #{b_pw}, #{b_name}, #{b_gender}, #{b_birth}, #{b_phone}, #{b_email}, #{b_zip}, #{b_addr1}, #{b_addr2}) 
+     </insert>
+     
+    <!-- 검색하는 SQL문 -->
+    <select id="select-by-b_id"
+        resultType="BuyerVO">
+    select * from s_tbl_buyer where b_id = #{b_id}
+    </select>
+    
+    	<!-- 로그인 -->
+    <select id="buyer-login" resultType="Integer">
+    select count(1) from s_tbl_buyer where b_id = #{b_id} and b_pw = #{b_pw}
+    </select>
+
+ </mapper>

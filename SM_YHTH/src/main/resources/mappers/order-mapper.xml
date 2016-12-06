@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.online.shop.OrderMapper">
+
+<insert id="order-insert">
+ insert into s_tbl_buy(b_id, delivery_zip, delivery_addr1, buy_status, delivery_addr2, b_name, b_phone, b_email, buy_cnt) 
+ values(#{b_id}, #{delivery_zip}, #{delivery_addr1}, #{buy_status}, #{delivery_addr2}, #{b_name}, #{b_phone}, #{b_email}, #{buy_cnt}) 
+</insert>
+
+<select id="get-buy_no" resultType="Integer">
+select max(buy_no) from s_tbl_buy where b_id = #{b_id}
+</select>
+
+ 
+</mapper>

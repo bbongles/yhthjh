@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.online.shop.QnAMapper">
+	
+	<insert id="insert-qna">
+		insert into s_tbl_qna(b_id, qna_type, qna_cont, p_no, b_email)
+		values(#{b_id}, #{qna_type}, #{qna_cont}, #{p_no}, #{b_email})
+	</insert>
+	
+	<insert id="insert-qnar">
+		insert into s_tbl_qna_r(s_id, qna_r_cont, qna_no)
+		values(#{s_id}, #{qna_r_cont}, #{qna_no})
+	</insert>
+	
+	<update id="update-insert-qnar">
+		update s_tbl_qna set qna_reply = #{qna_reply} where qna_no = #{qna_no}
+	</update>
+		
+	<select id="select-qna" resultType="com.online.shop.domain.QnaVO">
+		select * from s_tbl_qna where p_no  = #{p_no}
+	</select>
+	
+	<select id="select-qnar" resultType="com.online.shop.domain.QnaRVO">
+		select * from s_tbl_qna_r where qna_no  = #{qna_no}
+	</select>
+	
+	<update id="update-qnar">
+		update s_tbl_qna_r set qna_r_cont = #{qna_r_cont} where qna_no = #{qna_no} and s_id = #{s_id}
+	</update>
+	
+	<delete id="delete-qnar">
+		delete from s_tbl_qna_r where qna_no = #{qna_no} and qna_r_no = #{qna_r_no}
+	</delete>
+	
+	<!-- qna 페이징 처리를 위한 쿼리문 -->
+	<!-- 전체 페이지수 계산 -->
+	<select id="qnaTotalCount" resultType="Integer">
+		select count(*) from s_tbl_qna
+	</select>
+	
+	<!-- qna 페이징처리를 위한 쿼리문 -->
+	<select id="qnaListPage" resultType="com.online.shop.domain.QnaVO">
+		select b.*
+		from (
+			select rownum rn, a.*
+			from (
+				select * from s_tbl_qna 
+			) a
+		) b
+		where rn between #{start} and #{end}
+	</select>
+	
+
+ </mapper>

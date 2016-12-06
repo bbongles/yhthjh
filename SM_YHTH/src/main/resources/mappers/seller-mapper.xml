@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.online.shop.SellerMapper">
+  
+  <!-- 태훈 -->
+ 	<insert id="seller-insert">
+	insert into s_tbl_seller(s_id, s_pw, s_name, s_gender, s_birth, s_phone,
+	s_email, s_zip, s_addr1, s_addr2)
+	values(#{s_id}, #{s_pw}, #{s_name}, #{s_gender}, #{s_birth}, #{s_phone}, #{s_email},
+	#{s_zip}, #{s_addr1}, #{s_addr2})
+	</insert>
+
+	<select id="select-by-s_id" resultType="SellerVO">
+		select * from s_tbl_seller where s_id = #{s_id}
+	</select>
+
+	<select id="seller-login" resultType="Integer">
+		select count(1) from s_tbl_seller where s_id = #{s_id} and s_pw = #{s_pw}
+	</select>
+  
+  <!-- 용훈 -->
+  <!-- Read(select): 상품 목록  전체 검색 -->
+  <!-- 상품 정보 검색 -->
+  <select id="selectAllProduct" resultType="ProductVO">
+  select * from s_tbl_product where s_id = 'seller1' order by p_no desc
+  </select>
+  
+  <!-- 해당 상품번호(p_no)의 상세페이지 검색 -->
+  <select id="selectItemByPno" resultType="ProductVO">
+  select * from s_tbl_product where p_no = #{p_no}
+  </select>
+  
+  <!-- 상품 번호로 옵션 가져오기 -->
+  <select id="selectOpByPno" resultType="OptionVO">
+  select * from s_tbl_option where p_no = #{p_no}
+  </select>
+  
+  <!-- 상품 번호로 이미지 가져오기 -->
+  <select id="selectImgByPno" resultType="ImageVO">
+  select * from s_tbl_image where p_no = #{p_no}
+  </select>
+  
+  <!-- 판매자 로고 이미지 등록 -->
+  <update id="updateLogo">
+  update s_tbl_seller
+  set s_logo = #{s_logo}
+  where s_id = 'seller1' <!-- 로그인 합치고 s_id 받아와서 찾아야함. -->
+  </update>
+   
+  <!-- 판매자 아이디로 판매자 정보 받아오기 -->
+  <select id="selectSellerInfo" resultType="SellerVO">
+  select * from s_tbl_seller where s_id = #{s_id}
+  </select>
+  
+  <!-- 판매자 추가 정보 등록 -->
+  <update id="updateInfo">
+  update s_tbl_seller
+  set s_info = #{s_info}
+  where s_id = 'seller1' <!-- 로그인 합치고 s_id 받아와서 찾아야함. -->
+  </update>
+   
+  </mapper>

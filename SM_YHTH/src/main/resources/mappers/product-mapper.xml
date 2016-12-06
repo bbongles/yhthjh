@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.online.shop.ProductMapper">
+	<!-- Create(insert): 새 상품 등록 -->
+	<!-- 상품 정보 등록 -->
+	<insert id="insertProduct">
+	insert into s_tbl_product(p_name, p_price, p_cate1, p_cate2, p_stock, s_id, p_dis_rate, p_favo, p_sale_cnt, p_img)
+	values(#{p_name}, #{p_price}, #{p_cate1}, #{p_cate2}, #{p_stock}, #{s_id}, #{p_dis_rate}, #{p_favo}, #{p_sale_cnt}, #{p_img})
+	</insert>
+	
+	<!-- 상품 번호 추출 -->
+	<select id="selectProductNo" resultType="Integer">
+	select max(p_no) from s_tbl_product where s_id = 'seller1'
+	</select>
+	
+	<!-- 옵션 정보 등록 -->
+	<insert id="insertOption">
+	insert into s_tbl_option(o_title, o_cont, o_stock, p_name, s_id, p_no)
+	values(#{o_title}, #{o_cont}, #{o_stock}, #{p_name}, #{s_id}, #{p_no})
+	</insert>
+	
+	<!-- 이미지 정보 등록 -->
+	<insert id="insertImage">
+	insert into s_tbl_image(i_img, i_cont, p_name, s_id, p_no)
+	values(#{i_img}, #{i_cont}, #{p_name}, #{s_id}, #{p_no})
+	</insert>
+	
+	<!-- 상품 정보 삭제 -->
+	<delete id="deleteOptionByPno">
+	delete from s_tbl_option where p_no = #{p_no}
+	</delete>
+	
+	<delete id="deleteImageByPno">
+	delete from s_tbl_image where p_no = #{p_no}
+	</delete>
+
+	<delete id="deleteProductByPno">
+	delete from s_tbl_product where p_no = #{p_no}
+	</delete>
+	
+</mapper>
