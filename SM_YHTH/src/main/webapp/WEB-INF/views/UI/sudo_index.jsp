@@ -47,8 +47,9 @@
 							<li><a href="cart">Your Cart</a></li>
 							<li><a href="checkout">Checkout</a></li>		
 						
-						<c:if test="${empty s_login_id || empty b_login_id }">
-						<li><a href="login">Login</a></li>	
+						<c:if test="${empty s_login_id && empty b_login_id }">
+						<c:url value="login" var="login" />
+						<li><a href="${login}">Login</a></li>	
 						</c:if>
 								<c:if test="${not empty s_login_id || not empty b_login_id }">
 								<!-- 세션에 로그인 정보가 있는 경우 -->
