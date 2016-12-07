@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +63,13 @@ public class HomeController {
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public String openRegister(){
 		return "/sudo_loginSelect";
+	}
+	@RequestMapping(value="logout", method=RequestMethod.GET)
+	public String logout(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.invalidate();
+		logger.info("세션 비우기 성공!");
+		return "redirect:login"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
 	}
 	
 } // end class HomeController

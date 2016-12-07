@@ -74,7 +74,7 @@ public class CartController {
 		
 		// 주문자 정보 가져옴 ( 임시로 asdf 아이디로 해놓음, 나중에 세션으로 바꾸기)
 			HttpSession session = request.getSession();
-			Object id = session.getAttribute("login_id");
+			Object id = session.getAttribute("b_login_id");
 		String buyerID = (String) id;
 		BuyerVO voo = buyerService.read(buyerID);
 		String registedZipCode = voo.getB_zip();
@@ -108,7 +108,7 @@ public class CartController {
 		logger.info("selectCart 컨트롤러 실행");
 		// TODO: 로그인 세션으로 b_id 줘야함.. 임시로 aaaa해놈
 		HttpSession session = request.getSession();
-		Object id = session.getAttribute("login_id");
+		Object id = session.getAttribute("b_login_id");
 		String b_id= (String) id;
 		List<CartVO> list = cartService.read(b_id);
 		
@@ -129,7 +129,7 @@ public class CartController {
 		logger.info("selectCart 컨트롤러 실행");
 		// TODO: 로그인 세션으로 b_id 줘야함.. 임시로 aaaa해놈
 		HttpSession session = request.getSession();
-		Object id = session.getAttribute("login_id");
+		Object id = session.getAttribute("b_login_id");
 		String b_id= (String) id;
 		List<CartVO> list = cartService.read(b_id);
 		list.get(0).getBuy_cnt();

@@ -40,7 +40,7 @@ public class OrderController {
 	
 	// 체크박스로 모든 아이템들 주문할때
 	@RequestMapping(value="cartTossOrder", method=RequestMethod.POST)
-	public String tossToOrder(String c_no, Model model) throws IOException{
+	public String tossToOrder(String c_no, Model model, HttpServletRequest request) throws IOException{
 		int totalPriceForOrder = 0; // 리스트 합계금액 저장하는변수
 		int shippingCharge = 3000; // 배송비(임의로 정함 나중에 수정 필요)
 		logger.info("분리될 C_NO들 : "+c_no);
@@ -59,7 +59,9 @@ public class OrderController {
 		} 
 		
 		// 주문자 정보 가져옴 ( 임시로 asdf 아이디로 해놓음, 나중에 세션으로 바꾸기)
-		String buyerID = "aaaa";
+		HttpSession session = request.getSession();
+		Object id = session.getAttribute("b_login_id");
+		String buyerID = (String) id;
 		BuyerVO vo = buyerService.read(buyerID);
 		String registedZipCode = vo.getB_zip();
 		String registedAddr1 = vo.getB_addr1();
@@ -83,7 +85,7 @@ public class OrderController {
 	
 	// 체크박스 상관없이 아이템 하나 주문할때
 	@RequestMapping(value="OneCartTossOrder", method=RequestMethod.POST)
-	public String OneTossToOrder(int c_no, Model model) throws IOException{
+	public String OneTossToOrder(int c_no, Model model, HttpServletRequest request) throws IOException{
 		int totalPriceForOrder = 0; // 리스트 합계금액 저장하는변수
 		int shippingCharge = 3000; // 배송비(임의로 정함 나중에 수정 필요)
 
@@ -98,7 +100,9 @@ public class OrderController {
 		
 		
 		// 주문자 정보 가져옴 ( 임시로 asdf 아이디로 해놓음, 나중에 세션으로 바꾸기)
-		String buyerID = "aaaa";
+			HttpSession session = request.getSession();
+			Object id = session.getAttribute("b_login_id");
+		String buyerID =(String) id;
 		BuyerVO voo = buyerService.read(buyerID);
 		String registedZipCode = voo.getB_zip();
 		String registedAddr1 = voo.getB_addr1();
@@ -121,7 +125,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="readyForBill", method=RequestMethod.POST)
-	public String openBill(String c_no, Model model, OrderVO vo, HttpServletResponse response, HttpServletRequest request) throws IOException{
+	public String openBill(String c_no, Model model, OrderVO vo, HttpServletRequest request) throws IOException{
 	int buyNO = 0;
 	// 뒤로가기 버튼 누르고 다시 submit 해서 중복 주문 방지하는거 방지용 session
 	// 참고 - OrderInterceptor 클래스

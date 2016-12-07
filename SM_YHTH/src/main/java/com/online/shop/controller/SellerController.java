@@ -348,7 +348,7 @@ public class SellerController {
 			if (sellerService.isValidUser(s_id, s_pw)){
 				logger.info("로그인 성공");
 				HttpSession session = request.getSession();
-				session.setAttribute("login_id", s_id);
+				session.setAttribute("s_login_id", s_id);
 				logger.info("세션 저장 성공! key:login_id, 값 : "+s_id);
 				return "redirect:main";
 			} else {
