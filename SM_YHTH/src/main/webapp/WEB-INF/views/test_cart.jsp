@@ -59,7 +59,7 @@ tr td {
             <!-- 아이템당 가격 -->
             <td class="pricePerCount">${vo.p_price * vo.buy_cnt }</td>
          	<td>
-         	<form action="/shop01/order/OneCartTossOrder" method="post">
+         	<form action="/shop/order/OneCartTossOrder" method="post">
          	<input type="hidden" name="c_no" value="${vo.c_no}">
          	<input type="submit" value="주문하기">
          	</form>
@@ -76,7 +76,7 @@ tr td {
 		<input id="price" value="0" readonly="readonly" type="number" step="100" style="width: 269px">
 	</div>
 	<input type="button" value="장바구니에서 삭제" class="deleteall">
-<form action="/shop01/order/cartTossOrder" method="post" id="toOrder">	
+<form action="/shop/order/cartTossOrder" method="post" id="toOrder">	
 	<!-- 주문하기  -->
 	<input type="hidden" value="" id="hiddenCartNums" name="c_no">
 	<input type="button" value="전체 주문하기" id="CartToController" />

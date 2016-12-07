@@ -45,8 +45,11 @@ public class CartServiceImpl implements CartService{
 	}*/
 	@Override
 	public ProductVO cartImageByPno(int p_no) {
-		
 		return dao.cartImageByPno(p_no);
+	}
+	@Override
+	public int getAutoIncre() {
+		return dao.getAutoIncre();
 	}
 
 }

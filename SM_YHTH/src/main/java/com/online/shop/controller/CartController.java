@@ -53,8 +53,12 @@ public class CartController {
 	@RequestMapping(value="insertCertForDirect", method=RequestMethod.POST)
 	public String insertCartForDirect(CartVO vo, Model model){
 		logger.info("insertCartDirect 컨트롤러 실행");
+		logger.info(";vo.getP_no() "+vo.getP_no());
 		cartService.insertCart(vo);
-		logger.info("insertDirect 성공");
+		logger.info("insertDirect 성공"); 
+		int AutoIncre = cartService.getAutoIncre();// TODO 안됨;
+		logger.info("autoIncre"+AutoIncre);
+		
 		
 		///////////////////이 밑에서부터 다시 해야함.../////////////
 		
@@ -63,8 +67,8 @@ public class CartController {
 
 		// 카트에서 선택된 아이템들을 리스트로 넘김
 		List<CartVO> cartList = new ArrayList<>();
-
-			CartVO vod = cartService.readCart(vo.getC_no()); 
+		
+			CartVO vod = cartService.readCart(AutoIncre); 
 			totalPriceForOrder +=  vod.getBuy_cnt()*vod.getP_price(); // 총계산
 			if (vod != null) {
 				cartList.add(vod);
