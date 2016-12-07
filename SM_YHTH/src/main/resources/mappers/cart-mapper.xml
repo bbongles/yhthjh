@@ -42,5 +42,6 @@
 	<select id="cartImageByPno" resultType="ProductVO">
 	select * from s_tbl_product where p_no = (select p_no from s_tbl_cart where c_no = #{c_no})
 	</select>
+
 	
 </mapper>

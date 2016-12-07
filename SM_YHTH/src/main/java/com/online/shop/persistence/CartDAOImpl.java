@@ -59,5 +59,10 @@ public class CartDAOImpl implements CartDAO {
 		
 		return sqlSession.selectOne(NAMESPACE + ".cartImageByPno", p_no);
 	}
+	
+	@Override
+	public int getAutoIncre() {
+		return sqlSession.selectOne(NAMESPACE+".selectCnoForDirectOrder");
+	}
 
 }

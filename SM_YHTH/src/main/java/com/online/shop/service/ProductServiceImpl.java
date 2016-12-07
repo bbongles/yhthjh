@@ -57,6 +57,11 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productDao.deleteProductByPno(p_no);
 	}
+	
+	@Override
+	public List<ProductVO> selectCate2(String p_cate2) {
+		return productDao.selectProductCate(p_cate2);
+	}
 
 
 

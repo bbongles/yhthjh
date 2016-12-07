@@ -41,4 +41,9 @@
 	delete from s_tbl_product where p_no = #{p_no}
 	</delete>
 	
+			<!-- 상품 카테고리검색 추가 by 김태훈-->
+	<select id="selectCate2" resultType="ProductVO">
+	select * from s_tbl_product where p_cate2 = #{p_cate2}
+	</select>
+	
 </mapper>

@@ -142,6 +142,10 @@ public class SellerController {
 				maker.setTotalCount(dao.getNumOfRecordsQna());
 				maker.setPageData();
 				model.addAttribute("pageMaker", maker);
+				
+				// 카테고리 검색해서 연관상품 보여주기
+				List<ProductVO> relativelist = productService.selectCate2(pVo.getP_cate2());
+				model.addAttribute("relativeList", relativelist);
 		
 	} // end productDetail() -> 판매자 홈에서 상품 번호를 참조해 상품 상세 페이지로 넘겨주는 역할 
 
