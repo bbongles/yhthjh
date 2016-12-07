@@ -18,6 +18,8 @@ public interface SellerService {
 	// 용훈
 	// 전체 상품 정보 검색
 	public abstract List<ProductVO> readAllProduct();
+	// 판매자별 상품 정보 검색
+	public abstract List<ProductVO> readProductBySid(String s_id);
 	// 해당 상품 번호로 상세 페이지 리턴
 	public abstract ProductVO readItemByPno(int p_no);
 	// 해당 상품명과 판매자명으로 상세 페이지에 옵션 객체 리턴

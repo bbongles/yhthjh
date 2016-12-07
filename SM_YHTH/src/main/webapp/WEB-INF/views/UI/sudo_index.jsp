@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!DOCTYPE html>
 
@@ -53,7 +52,7 @@
 						</c:if>
 								<c:if test="${not empty login_id }">
 								<!-- 세션에 로그인 정보가 있는 경우 -->
-								<c:url value="/buyer/logout" var="logout" />
+								<c:url value="/seller/logout" var="logout" />
 								<li><a href="${logout }">로그아웃</a></li>		
 								</c:if>			
 	

@@ -16,6 +16,7 @@ public interface SellerDAO {
 	
 	// 용훈 코드
 	public abstract List<ProductVO> selectAllProduct();
+	public abstract List<ProductVO> selectProductBySid(String s_id);
 	public abstract ProductVO selectItemByPno(int p_no);
 	public abstract List<OptionVO> selectOpByPno(int p_no);
 	public abstract List<ImageVO> selectImgByPno(int p_no);

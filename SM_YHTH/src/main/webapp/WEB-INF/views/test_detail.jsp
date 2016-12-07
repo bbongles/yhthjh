@@ -50,10 +50,10 @@ border:3px solid #ff0000;}
 <div class=""></div>
 
 	<!-- productDetail -->
-	<form action="/shop01/cart/insertCart" method="get">
+	<form action="/shop/cart/insertCart" method="get">
 		<div><input type="hidden" value="${productDetail.p_no }" name="p_no"></div>
 		<!-- TODO: 세션으로 b_id 넣어줘야함.. -->
-		<div><input type="hidden" value="aaaa" name="b_id"></div> 
+		<div><input type="hidden" value="${login_id}" name="b_id"></div> 
 		<div>
 			<span>상품명 : </span>${productDetail.p_name }</div>
 			<!-- TODO: product 테이블에서 select 해야함 밑에도  -->

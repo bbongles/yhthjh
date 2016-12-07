@@ -5,7 +5,9 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,17 +63,24 @@ public class SellerController {
 	@Autowired
 	private RevDAO daoR;
 	
-	@RequestMapping(value="/pList", method=RequestMethod.GET)
-	public void sellerHome(Model model, String s_id) {
+	@RequestMapping(value="/pList", method=RequestMethod.GET) // 맵핑 판매자 홈으로 바꾸고 나중에 쿼리 스트링 넘겨서 각각의 판매자 홈으로 넘어가게 해줘야함
+	public void sellerHome(Model model, String s_id, HttpServletRequest request) {
+		
+		// 판매자 아이디에 의해 판매자 정보 받아오기
+		HttpSession session = request.getSession();
+		Object id = session.getAttribute("login_id");
+		
+		s_id = (String) id;
+		SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
+		
 		// 전체 상품 리스트
-		List<ProductVO> productList = sellerService.readAllProduct();
+		List<ProductVO> productList = sellerService.readProductBySid(s_id);
 		logger.info("productList size: " + productList.size());
 		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("productList", productList);
+		
 
-		// 판매자 아이디에 의해 판매자 정보 받아오기
-		s_id = "seller1";
-		SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
+		
 		// 판매자 정보를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("sellerInfo", sellerInfo);
 		
@@ -240,7 +249,7 @@ public class SellerController {
 		@RequestMapping(value="/register", method=RequestMethod.GET)
 		public String mainRegister(Model model){
 			
-			logger.info("register_buyer 실행");
+			logger.info("register_seller 실행");
 		
 		// return "sudo_checkout2";
 			return "/login/register_seller";
@@ -248,32 +257,7 @@ public class SellerController {
 
 		/* ----------------------------------------------------------------------------------------------------- */
 		
-		// 구매자 login_register 아이디 중복체크 컨트롤러
-		@RequestMapping(value="/b_checkid", method=RequestMethod.POST)
-		public void b_checkid(@RequestBody String userid, HttpServletResponse response) throws IOException{
-			
-			logger.info("checkid 실행");
-			//logger.info("userid" + userid);
-			
-			// 필요없는 문자열을 제거
-			String b_id = userid.substring(0, userid.length()-1);
-			logger.info("b_id : " + b_id);
-			
-			// DB에서 입력한 문자열 검색
-			BuyerVO vo = buyerService.read(b_id);
-			
-			// DB에 있다면 중복...
-			if (vo!=null){
-				String selectedID = vo.getB_id();
-				logger.info("[ " + selectedID + " ] 는 중복된 아이디 입니다...");
-				response.getWriter().print(1);
-				
-			} else {
-				logger.info("사용 가능한 아이디 입니다...^^");
-			}
-		}	
-		
-		
+
 		// 판매자 login_register 아이디 중복체크 컨트롤러
 		@RequestMapping(value="/s_checkid", method=RequestMethod.POST)
 		public void s_checkid(@RequestBody String userid, HttpServletResponse response) throws IOException{
@@ -339,18 +323,6 @@ public class SellerController {
 		
 		/* ----------------------------------------------------------------------------------------------------- */
 		
-		// 구매자 가입완료 버튼 클릭
-		@RequestMapping(value="/b_register_result", method=RequestMethod.POST)
-		public String b_register_result(BuyerVO vo){ // default 객체로 생성하고 name 정보들을  set 한다.
-			// login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
-			// 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
-			buyerService.insert(vo);
-			logger.info("구매자 회원가입 성공! ");
-			return "login_result"; // TODO: 성공시 메인화면으로 보내야 함.
-		}
-		
-		/* ----------------------------------------------------------------------------------------------------- */
-		
 		// 판매자 가입완료 버튼 클릭
 		@RequestMapping(value="/s_register_result", method=RequestMethod.POST)
 		public String s_register_result(SellerVO vo){
@@ -359,7 +331,38 @@ public class SellerController {
 			logger.info("판매자 회원가입 버튼 호출 ");
 			sellerService.createSeller(vo);
 			logger.info("판매자 회원가입 성공! ");
-			return "login_result"; // TODO: 성공시 메인화면으로 보내야 함.
+			return "UI/sudo_index"; // TODO: 성공시 메인화면으로 보내야 함.
+		}
+		
+		/////////////////////// 판매자 로그인 관려 처리
+		
+		@RequestMapping(value="login", method=RequestMethod.GET)
+		public String openRegister(){
+			return "/sudo_loginSelect";
+		}
+		
+		@RequestMapping(value="login", method=RequestMethod.POST)
+		public String login(String s_id, String s_pw, HttpServletRequest request, String query){	
+			logger.info("login 컨트롤러 실행");
+			logger.info("s_id : "+s_id+" , s_pw : "+s_pw);
+			if (sellerService.isValidUser(s_id, s_pw)){
+				logger.info("로그인 성공");
+				HttpSession session = request.getSession();
+				session.setAttribute("login_id", s_id);
+				logger.info("세션 저장 성공! key:login_id, 값 : "+s_id);
+				return "redirect:main";
+			} else {
+				logger.info("로그인 실패");
+				return "redirect:../register";
+			}
+		}
+		@RequestMapping(value="logout", method=RequestMethod.GET)
+		public String logout(HttpServletRequest request){
+			HttpSession session = request.getSession();
+			session.removeAttribute("login_id");
+			session.invalidate();	
+			logger.info("세션 비우기 성공!");
+			return "redirect:login"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
 		}
 	
 } // end class SellerController

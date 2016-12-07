@@ -149,13 +149,13 @@
 										<label class="control-label">아이디</label>
 										<div class="controls">
 											<input type="text" placeholder="아이디 입력" id="username"
-												class="input-xlarge" name="b_id">
+												class="input-xlarge" name="s_id">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label">비밀번호</label>
 										<div class="controls">
-											<input type="password" name="b_pw" placeholder="비밀번호 입력"
+											<input type="password" name="s_pw" placeholder="비밀번호 입력"
 												id="password" class="input-xlarge">
 										</div>
 									</div>
@@ -176,7 +176,7 @@
 				</div> <!-- end span5 -->
 			<div class="span7">
 <h4 class="title"><span class="text"><strong>Register</strong> Select</span></h4>
-<a href="buyer/main"><img alt="구매자 회원가입" src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_buyer.gif" style="width: 150px"></a>
+<a href="buyer/register"><img alt="구매자 회원가입" src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_buyer.gif" style="width: 150px"></a>
 <a href=""><img alt="판매자 회원가입" src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_seller.gif" style="width: 150px"></a>
 
 

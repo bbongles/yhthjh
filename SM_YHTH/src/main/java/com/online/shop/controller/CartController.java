@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +52,7 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="insertCertForDirect", method=RequestMethod.POST)
-	public String insertCartForDirect(CartVO vo, Model model){
+	public String insertCartForDirect(CartVO vo, Model model, HttpServletRequest request){
 		logger.info("insertCartDirect 컨트롤러 실행");
 		cartService.insertCart(vo);
 		int c_no = cartService.selectMaxCNO();
@@ -71,7 +73,9 @@ public class CartController {
 		
 		
 		// 주문자 정보 가져옴 ( 임시로 asdf 아이디로 해놓음, 나중에 세션으로 바꾸기)
-		String buyerID = "aaaa";
+			HttpSession session = request.getSession();
+			Object id = session.getAttribute("login_id");
+		String buyerID = (String) id;
 		BuyerVO voo = buyerService.read(buyerID);
 		String registedZipCode = voo.getB_zip();
 		String registedAddr1 = voo.getB_addr1();
@@ -100,10 +104,12 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="selectCart", method=RequestMethod.GET)
-	public String selectCart(Model model){
+	public String selectCart(Model model, HttpServletRequest request){
 		logger.info("selectCart 컨트롤러 실행");
 		// TODO: 로그인 세션으로 b_id 줘야함.. 임시로 aaaa해놈
-		String b_id="aaaa";
+		HttpSession session = request.getSession();
+		Object id = session.getAttribute("login_id");
+		String b_id= (String) id;
 		List<CartVO> list = cartService.read(b_id);
 		
 		if (list.size()!=0){
@@ -119,10 +125,12 @@ public class CartController {
 	
 	////////////////////////////////////////////////////////////////
 	@RequestMapping(value="selectCart2", method=RequestMethod.GET)
-	public String selectCart2(Model model){
+	public String selectCart2(Model model, HttpServletRequest request){
 		logger.info("selectCart 컨트롤러 실행");
 		// TODO: 로그인 세션으로 b_id 줘야함.. 임시로 aaaa해놈
-		String b_id="aaaa";
+		HttpSession session = request.getSession();
+		Object id = session.getAttribute("login_id");
+		String b_id= (String) id;
 		List<CartVO> list = cartService.read(b_id);
 		list.get(0).getBuy_cnt();
 		model.addAttribute("cartList", list);

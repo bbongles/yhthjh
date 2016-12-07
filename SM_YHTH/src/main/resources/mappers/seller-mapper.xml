@@ -14,7 +14,7 @@
 	</insert>
 
 	<select id="select-by-s_id" resultType="SellerVO">
-		select * from s_tbl_seller where s_id = #{s_id}
+		select * from s_tbl_seller, s_tbl_buyer where s_id = #{s_id} or b_id = #{s_id}
 	</select>
 
 	<select id="seller-login" resultType="Integer">
@@ -24,8 +24,14 @@
   <!-- 용훈 -->
   <!-- Read(select): 상품 목록  전체 검색 -->
   <!-- 상품 정보 검색 -->
+  <!-- 판매자 별 상품 검색 -->
+  <select id="selectProductBySid" resultType="ProductVO">
+  select * from s_tbl_product where s_id = #{s_id} order by p_no desc
+  </select>
+  
+  <!-- 전체 상품 목록 검색 -->
   <select id="selectAllProduct" resultType="ProductVO">
-  select * from s_tbl_product where s_id = 'seller1' order by p_no desc
+  select * from s_tbl_product
   </select>
   
   <!-- 해당 상품번호(p_no)의 상세페이지 검색 -->

@@ -29,10 +29,10 @@ public class SellerDAOImpl implements SellerDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<ProductVO> selectAllProduct() {
-		List<ProductVO> productList = sqlSession.selectList(NAMESPACE + ".selectAllProduct");
+	public List<ProductVO> selectProductBySid(String s_id) {
+		List<ProductVO> productList = sqlSession.selectList(NAMESPACE + ".selectProductBySid", s_id);
 		
-		logger.info("selectAllProduct() 호출: product size = " + productList.size());
+		logger.info("selectProductBySid() 호출: product size = " + productList.size());
 		
 		return productList;
 	}
@@ -114,5 +114,14 @@ public class SellerDAOImpl implements SellerDAO {
 			} else {
 				return false;
 			}
+		}
+
+		@Override
+		public List<ProductVO> selectAllProduct() {
+			List<ProductVO> productList = sqlSession.selectList(NAMESPACE + ".selectAllProduct");
+			
+			logger.info("selectAllProduct() 호출: product size = " + productList.size());
+			
+			return productList;
 		}
 } // end class SellerDAOImpl

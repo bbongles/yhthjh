@@ -18,9 +18,9 @@ public class SellerServiceImpl implements SellerService {
 	private SellerDAO sellerDao;
 	
 	@Override
-	public List<ProductVO> readAllProduct() {
+	public List<ProductVO> readProductBySid(String s_id) {
 		
-		return sellerDao.selectAllProduct();
+		return sellerDao.selectProductBySid(s_id);
 	}
 
 	@Override
@@ -73,6 +73,11 @@ public class SellerServiceImpl implements SellerService {
 	@Override
 	public boolean isValidUser(String s_id, String s_pw) {
 		return sellerDao.isValidUser(s_id, s_pw);
+	}
+
+	@Override
+	public List<ProductVO> readAllProduct() {		
+		return sellerDao.selectAllProduct();
 	}
 
 } // end class SellerServiceImpl
