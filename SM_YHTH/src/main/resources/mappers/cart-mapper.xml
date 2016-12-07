@@ -11,13 +11,12 @@
 	<insert id="cart-insert">
 		  insert into s_tbl_cart(b_id, p_no, p_name, p_price, buy_cnt, o_cont, p_img, s_id)
          values(#{b_id}, #{p_no}, #{p_name}, #{p_price}, #{buy_cnt}, #{o_cont}, #{p_img}, #{s_id})
-	</insert> 
-	
-<!-- 	<insert id="cart-insert">
-		  insert into s_tbl_cart(b_id, p_no, p_name, p_price, buy_cnt, o_cont, s_id)
-         values(#{b_id}, #{p_no}, #{p_name}, #{p_price}, #{buy_cnt}, #{o_cont}, #{s_id})
 	</insert>
-	 -->
+	
+	<select id="get-c_no" resultType="Integer">
+	select max(c_no) from s_tbl_cart
+	</select>
+	
 	<!-- 카트리스트 불러오기.. 단, 주문번호가 없는것만(삭제방지) -->
 	<select id="cart-select-by-b_id" resultType="CartVO">
 		select * from s_tbl_cart where b_id = #{b_id} and buy_no is null

@@ -21,5 +21,5 @@ public interface CartDAO {
 	// 카트 이미지 받아오기
 	public abstract ProductVO cartImageByPno(int p_no);
 	// Auto Incre 값 얻기
-	public abstract int getAutoIncre();
+	public abstract int selectMaxCNoForDirectOrder();
 }

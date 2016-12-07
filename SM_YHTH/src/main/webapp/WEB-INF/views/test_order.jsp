@@ -22,7 +22,7 @@ tr td {
 </style>
 <body>
 <h1>주문 리스트</h1>
-	<form action="readyForBill" method="post" name="frm">
+	<form action="/shop/order/readyForBill" method="post" name="frm">
 <table>
 		<tr>
 			<th>제품번호</th>
