@@ -192,7 +192,7 @@ public class BuyerController {
 		if (buyerService.isValidUser(b_id, b_pw)){
 			logger.info("로그인 성공");
 			HttpSession session = request.getSession();
-			session.setAttribute("login_id", b_id);
+			session.setAttribute("b_login_id", b_id);
 			logger.info("세션 저장 성공! key:login_id, 값 : "+b_id);
 			return "redirect:main";
 		} else {

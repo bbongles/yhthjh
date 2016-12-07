@@ -130,7 +130,7 @@ $(document).ready(function(){
 	<br/>
 	
 	<form id="frm" action="/shop/cart/insertCart" method="get">
-	<input type="hidden" value="aaaa" name="b_id" id="b_id"> <!-- 회원가입/로그인 통합 후 세션으로 구매자 아이디 받아오기!! -->
+	<input type="hidden" value="${b_login_id}" name="b_id" id="b_id"> <!-- 회원가입/로그인 통합 후 세션으로 구매자 아이디 받아오기!! -->
 	<input type="hidden" name="p_no" id="detail_p_no" value="${productVO.p_no }" /> 
 	<div id="coveringBox">
 		<div class="locationSet">
