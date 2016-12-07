@@ -36,4 +36,8 @@ public class HomeController {
 		//return "home";
 		return "template_form";
 	}
+	@RequestMapping(value="register", method=RequestMethod.GET)
+	public String openRegister(){
+		return "/sudo_loginSelect";
+	}
 } // end class HomeController
