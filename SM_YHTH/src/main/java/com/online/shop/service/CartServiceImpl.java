@@ -39,17 +39,13 @@ public class CartServiceImpl implements CartService{
 	public int updateBuyNo(int buy_no, int c_no) {
 		return dao.updateBuyNO(buy_no, c_no);
 	}
-	/*@Override
-	public int readC_noFromCartList(String b_id) {
-		return dao.readC_noForDeleteFromCartList(b_id);
-	}*/
 	@Override
 	public ProductVO cartImageByPno(int p_no) {
 		return dao.cartImageByPno(p_no);
 	}
 	@Override
-	public int getAutoIncre() {
-		return dao.getAutoIncre();
+	public int selectMaxCNO() {
+		return dao.selectMaxCNoForDirectOrder();
 	}
 
 }

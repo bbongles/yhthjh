@@ -13,5 +13,5 @@ public interface CartService {
 	public abstract CartVO readCart(int c_no);
 	public abstract int updateBuyNo(int buy_no, int c_no);
 	public abstract ProductVO cartImageByPno(int p_no);
-	public abstract int getAutoIncre();
+	public abstract int selectMaxCNO();
 }

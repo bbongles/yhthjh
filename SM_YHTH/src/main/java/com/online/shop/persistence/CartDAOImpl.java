@@ -61,8 +61,8 @@ public class CartDAOImpl implements CartDAO {
 	}
 	
 	@Override
-	public int getAutoIncre() {
-		return sqlSession.selectOne(NAMESPACE+".selectCnoForDirectOrder");
+	public int selectMaxCNoForDirectOrder() {
+		return sqlSession.selectOne(NAMESPACE+".get-c_no");
 	}
 
 }
