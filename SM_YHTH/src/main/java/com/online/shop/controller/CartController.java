@@ -52,13 +52,11 @@ public class CartController {
 	@RequestMapping(value="insertCertForDirect", method=RequestMethod.POST)
 	public String insertCartForDirect(CartVO vo, Model model){
 		logger.info("insertCartDirect 컨트롤러 실행");
-		int c_no = cartService.selectMaxCNO();// TODO 안됨;
-		// select max(c_no) 
+		cartService.insertCart(vo);
+		int c_no = cartService.selectMaxCNO();
 		logger.info("insertDirect 성공"); 
 		logger.info("autoIncre"+c_no);
 		
-		
-		///////////////////이 밑에서부터 다시 해야함.../////////////
 		
 		int totalPriceForOrder = 0; // 리스트 합계금액 저장하는변수
 		int shippingCharge = 3000; // 배송비(임의로 정함 나중에 수정 필요)
