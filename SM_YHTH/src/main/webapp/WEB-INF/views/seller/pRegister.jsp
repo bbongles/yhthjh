@@ -212,7 +212,7 @@ textarea {
 			callback : feedback
 		// TODO: 사진을 업로드하면 사진은 imgur서버상에 존재... 그러나 웹 사이트 계정에선 확인 불가...
 		});
-
+	
 	</script>
 
 </body>

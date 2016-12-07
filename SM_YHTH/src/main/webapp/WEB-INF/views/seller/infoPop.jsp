@@ -31,14 +31,20 @@
 		<input type="text" id="s_info" name="s_info" placeholder="http:// 를 포함해 넣어주세요..." />
 		
 		<input type="submit" id="infoSubmit" value="등 록" />
+		<input type="button" id="closeSubmit" value="닫 기" />
 		
 	</form>
 
 	<script>
 	$('#infoSubmit').click(function() {
+		/* window.close();
+		window.opener.location.reload(); */
+	});
+	
+	$('#closeSubmit').click(function() {
 		window.close();
 		window.opener.location.reload();
-	});
+	})
 	</script>
 	
 </body>

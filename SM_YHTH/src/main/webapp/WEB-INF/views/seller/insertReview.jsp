@@ -107,12 +107,13 @@
  		$('#btn_submit').click(function() {;
 
 		jQuery('#qnafrm').submit();
-		 window.close();
-		 window.opener.location.reload();
+		 /* window.close();
+		 window.opener.location.reload(); */
  		})
 		 
 		$('#btn_close').click(function() {
 			window.close();
+			window.opener.location.reload();
 		})
 		
 	})

@@ -68,14 +68,14 @@
 			$('#submitQnA').click(function() {
 
 				jQuery('#qnafrm').submit();
-				 window.close();
-				 window.opener.location.reload();
+				 /* window.close();
+				 window.opener.location.reload(); */
 			})
 			
 			
 			$('#btn_submit').click(function() {
 				/*window.close(); */
-				 document.forms['frmNm'].submit();
+				 /* document.forms['frmNm'].submit(); */
 				 window.opener.location.reload();
 				 window.open('','_self').close();
 			})

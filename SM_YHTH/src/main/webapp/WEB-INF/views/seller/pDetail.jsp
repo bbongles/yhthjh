@@ -31,17 +31,27 @@
 	}
 	.detailInfo {
 		width: 400px;
+		height: 330px;
 		float: left;
 		
 	}
 	#coveringBox {
-		width: 1260px;
+		width: 1360px;
 		margin: 0 auto;
 		display: inline-block;
 	}
 	.locationSet {
 		display: inline-block;
-		margin-left: 400px;
+		margin-left: 300px;
+	}
+	.sellerLogo {
+		float: left;
+		width: 150px;
+		height: 150px;
+	}
+	#logoImg {
+		width: 150px;
+		height: 150px;
 	}
 	#imageDetailInfo {
 		width: 1260px;
@@ -53,6 +63,11 @@
 	}
 	.detailCont {
 		text-align: center;
+		margin: 0 auto;
+		border: none;
+		overflow: hidden;
+		wrap: soft;
+		resize: none;
 	}
 	#contentList {
 		width: 1260px;
@@ -106,7 +121,7 @@
 	
 	<br/>
 	
-	<form id="frm" action="/shop01/cart/insertCart" method="get">
+	<form id="frm" action="/shop/cart/insertCart" method="get">
 	<input type="hidden" value="aaaa" name="b_id" id="b_id"> <!-- 회원가입/로그인 통합 후 세션으로 구매자 아이디 받아오기!! -->
 	<input type="hidden" name="p_no" id="detail_p_no" value="${productVO.p_no }" /> 
 	<div id="coveringBox">
@@ -149,7 +164,9 @@
     			<input type="submit" value="장바구니 담기">
     			<input type="button" value="바로 구매" id="directOrder">
     		</div>
-    	
+    		<div class="sellerLogo">
+    			<img id="logoImg" src="${sVo.s_logo }" />
+    		</div>
     	</div>    
     </div><br/>
  
@@ -160,7 +177,7 @@
     	<c:forEach var="imageList" items="${imageList }">
     		<div style="text-align: center;" id="contentList">
     			<img src="${imageList.i_img }" class="detailImg" /><br/><br/>
-    			<span class="detailCont">${imageList.i_cont }</span><br/><br/><br/>
+    			<textarea cols="65" rows="5" class="detailCont" readonly>${imageList.i_cont }</textarea><br/><br/><br/>
     		</div>
     	</c:forEach>
     </div><br/>
@@ -426,9 +443,13 @@
     });
     
     $('#directOrder').click(function(){
-		$('#frm').attr('action', '/shop01/cart/insertCertForDirect');
+		$('#frm').attr('action', '/shop/cart/insertCertForDirect');
 		$('#frm').attr('method', 'post');
 		$('#frm').submit();
+    });
+    
+    $('#logoImg').click(function() {
+    	location = 'pList';
     });
     
 	</script>

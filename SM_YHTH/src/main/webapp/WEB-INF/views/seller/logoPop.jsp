@@ -39,6 +39,7 @@
 	<input type="text" id="s_logo" name="s_logo" placeholder="로고로 등록할 이미지 URL을 넣어주세요." /><br/>
 	
 	<input type="submit" id="logoSubmit" value="등 록" />
+	<input type="button" id="closeSubmit" value="닫 기" />
 	
 	</form>
 	
@@ -58,6 +59,11 @@
 	});
 	
 	$('#logoSubmit').click(function() {
+		/* window.close();
+		window.opener.location.reload(); */
+	});
+	
+	$('#closeSubmit').click(function() {
 		window.close();
 		window.opener.location.reload();
 	});
