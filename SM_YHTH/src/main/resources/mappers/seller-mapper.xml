@@ -14,7 +14,7 @@
 	</insert>
 
 	<select id="select-by-s_id" resultType="SellerVO">
-		select * from s_tbl_seller, s_tbl_buyer where s_id = #{s_id} or b_id = #{s_id}
+		select * from s_tbl_seller where s_id = #{s_id};
 	</select>
 
 	<select id="seller-login" resultType="Integer">
