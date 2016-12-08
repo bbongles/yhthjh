@@ -42,6 +42,7 @@
 	<beans:bean id="OrderInterceptor" class="com.online.shop.interceptor.OrderInterceptor">
 	</beans:bean>
 	
+	
 	<!--  인터셉터를 요청(request)에 매핑 -->
 	<interceptors>
 	
@@ -64,6 +65,11 @@
 		<interceptor>
 			<mapping path="/order/readyForBill"/>
 			<beans:ref bean="OrderInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/cart/insertCart"/>
+			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 		
 	</interceptors>
