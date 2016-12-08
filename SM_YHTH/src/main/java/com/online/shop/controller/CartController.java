@@ -43,17 +43,25 @@ public class CartController {
 	SellerService sellerService;
 	
 	@RequestMapping(value="insertCart", method=RequestMethod.GET)
-	public String insertCart(CartVO vo){
+	public String insertCart(CartVO vo, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Object id = session.getAttribute("b_login_id");
+		String b_id = (String) id;
 		logger.info("insertCart 컨트롤러 실행");
+		vo.setB_id(b_id);
 		cartService.insertCart(vo);
 		logger.info("카트 인서트 성공");
 		
 		return "redirect:selectCart";
 	}
 	
-	@RequestMapping(value="insertCertForDirect", method=RequestMethod.POST)
+	@RequestMapping(value="insertCertForDirect", method=RequestMethod.GET)
 	public String insertCartForDirect(CartVO vo, Model model, HttpServletRequest request){
 		logger.info("insertCartDirect 컨트롤러 실행");
+		HttpSession session = request.getSession();
+		Object id = session.getAttribute("b_login_id");
+		String b_id = (String) id;
+		vo.setB_id(b_id);
 		cartService.insertCart(vo);
 		int c_no = cartService.selectMaxCNO();
 		logger.info("insertDirect 성공"); 
@@ -71,10 +79,7 @@ public class CartController {
 				cartList.add(vod);
 			}
 		
-		
 		// 주문자 정보 가져옴 ( 임시로 asdf 아이디로 해놓음, 나중에 세션으로 바꾸기)
-			HttpSession session = request.getSession();
-			Object id = session.getAttribute("b_login_id");
 		String buyerID = (String) id;
 		BuyerVO voo = buyerService.read(buyerID);
 		String registedZipCode = voo.getB_zip();
@@ -95,10 +100,7 @@ public class CartController {
 		model.addAttribute("buyerEmail", voo.getB_email());
 		model.addAttribute("b_id", voo.getB_id());
 		
-		
-		
 		////////////////////////////////
-		
 		
 		return "test_order";
 	}

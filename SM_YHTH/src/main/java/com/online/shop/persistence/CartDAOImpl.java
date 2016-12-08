@@ -21,6 +21,7 @@ public class CartDAOImpl implements CartDAO {
 	// 장바구니 추가
 	@Override
 	public int insertCart(CartVO vo) {
+
 		return sqlSession.insert(NAMESPACE+".cart-insert", vo); 
 	}
 	/* ----------------------------------------------------------------------------------------------------- */

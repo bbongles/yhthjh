@@ -481,7 +481,7 @@ $(document).ready(function(){
     		
 			if(ret==true){
 			$('#frm').attr('action', '/shop/cart/insertCertForDirect');
-			$('#frm').attr('method', 'post');
+			$('#frm').attr('method', 'get');
 			$('#frm').submit();	
 			}
 		}
