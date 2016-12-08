@@ -56,7 +56,6 @@ public class SellerController {
 	@Autowired
 	BuyerService buyerService;
 	
-
 	@Autowired
 	private QnADAO dao;
 	
@@ -68,7 +67,7 @@ public class SellerController {
 		
 		// 판매자 아이디에 의해 판매자 정보 받아오기
 		HttpSession session = request.getSession();
-		Object id = session.getAttribute("login_id");
+		Object id = session.getAttribute("s_login_id");
 		
 		s_id = (String) id;
 		SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
@@ -90,7 +89,7 @@ public class SellerController {
 	/*----------------------------------------------------------------------------*/
 	
 	@RequestMapping(value="pDetail", method=RequestMethod.GET)
-	public void productDetail(int p_no, String s_id, String p_name, Integer page, QnaVO vo, Model model) {
+	public void productDetail(int p_no, String s_id, String p_name, Integer page, QnaVO vo, Model model, HttpServletRequest request) {
 		// 상품 번호에 의한 각 상품의 전체 정보 받아오기
 		ProductVO pVo = sellerService.readItemByPno(p_no);
 		// 전체 정보를 Model 객체에 넣어서 View(jsp)에 전달
@@ -107,7 +106,9 @@ public class SellerController {
 		model.addAttribute("imageList", imageList);
 		
 		// 판매자 정보 받아오기
-		s_id = "seller1";
+		HttpSession session = request.getSession();
+		Object id = session.getAttribute("s_login_id");
+		s_id = (String) id;
 		SellerVO sVo = sellerService.readSellerInfo(s_id);
 		// 판매자 정보를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("sVo", sVo);
@@ -353,13 +354,12 @@ public class SellerController {
 				return "redirect:main";
 			} else {
 				logger.info("로그인 실패");
-				return "redirect:../register";
+				return "redirect:../login";
 			}
 		}
 		@RequestMapping(value="logout", method=RequestMethod.GET)
 		public String logout(HttpServletRequest request){
 			HttpSession session = request.getSession();
-//			session.removeAttribute("login_id");
 			session.invalidate();	
 			logger.info("세션 비우기 성공!");
 			return "redirect:login"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
