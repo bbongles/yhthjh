@@ -63,7 +63,7 @@ textarea {
 		<input type="hidden" name="p_favo" value="0" />
 		<!-- 판매량 -->
 		<input type="hidden" name="p_sale_cnt" value="0" />
-
+		
 		<!-- 카테고리 -->
 		<label>카테고리</label> 
 		<select name="p_cate1" id="p_cate1">
