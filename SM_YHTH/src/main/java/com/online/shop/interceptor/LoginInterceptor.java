@@ -33,7 +33,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			return true;
 		} else { // 세션에 로그인 정보가 없는 경우
 			response.sendRedirect("/shop/loginPop");
-			response.send
+			
 			return false;
 		}
 		
