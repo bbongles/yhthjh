@@ -70,11 +70,18 @@ img {
 </head>
 <body>
 
-	<h1>판매자 홈</h1>
+	<h1>판매자가 보는 판매자 홈</h1>
+	
+		판매자홈 주인 아이디 : 
+	<input type="text" id="ownSeller" value="${sellerInfo.s_id}"><br> <!-- TODO hidden으로 고치기(삭제 ㄴㄴㄴ) -->
+	로그인한 판매자 아이디 : 
+	<input type="text" id="loginedSeller" value="${s_login_id}"><!-- TODO hidden으로 고치기(삭제 ㄴㄴㄴ) -->
 	
 	<nav>
 		<ul>
+		<c:if test="${s_login_id eq sellerInfo.s_id}">
 			<li><a href="pRegister">상품 등록</a></li>
+			</c:if>
 		</ul>
 	</nav>
 	
@@ -121,19 +128,26 @@ img {
 			
 		</ul>
 	</div>
+
 	
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
+	// 로그인한 사용자와 판매자홈 주인의 아이디가 같을때만 실행
+	var own = $('#ownSeller').val();
+	var visiter = $('#loginedSeller').val();
+if (own==visiter){
 	$('#sellerLogo').click(function() {
 		window.open("../seller/logoPop", 'window', 'width=400, height=380, resizable=no');
 	});
-	
 	$('#sellerInfo').click(function() {
 		window.open("../seller/infoPop", 'window', 'width=400, height=200, resizable=no');
 	});
+} else {
+	return false;
+}
 });
 
 </script>

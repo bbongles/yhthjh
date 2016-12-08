@@ -20,8 +20,8 @@ public interface SellerDAO {
 	public abstract ProductVO selectItemByPno(int p_no);
 	public abstract List<OptionVO> selectOpByPno(int p_no);
 	public abstract List<ImageVO> selectImgByPno(int p_no);
-	public abstract int updateLogo(SellerVO sVo);
+	public abstract int updateLogo(SellerVO sVo, String s_id);
 	public abstract SellerVO selectSellerInfo(String s_id);
-	public abstract int updateInfo(SellerVO sVo);
+	public abstract int updateInfo(SellerVO sVo, String s_id);
 	
 } // end interface SellerDAO

@@ -65,10 +65,13 @@ public class SellerDAOImpl implements SellerDAO {
 	}
 
 	@Override
-	public int updateLogo(SellerVO sVo) {
+	public int updateLogo(SellerVO sVo, String s_id) {
 		logger.info("updateLogo() 호출: s_id = " + sVo.getS_id());
+		Map<String, Object> map = new HashMap<>();
+		map.put("s_id", (String) s_id);
+		map.put("sVo", (SellerVO) sVo);
 		
-		return sqlSession.update(NAMESPACE + ".updateLogo", sVo);
+		return sqlSession.update(NAMESPACE + ".updateLogo", map);
 	}
 
 	@Override
@@ -81,10 +84,12 @@ public class SellerDAOImpl implements SellerDAO {
 	}
 
 	@Override
-	public int updateInfo(SellerVO sVo) {
+	public int updateInfo(SellerVO sVo, String s_id) {
 		logger.info("updateInfo() 호출: s_id = " + sVo.getS_id());
-		
-		return sqlSession.update(NAMESPACE + ".updateInfo", sVo);
+		Map<String, Object> map = new HashMap<>();
+		map.put("s_id", (String) s_id);
+		map.put("sVo", (SellerVO) sVo);
+		return sqlSession.update(NAMESPACE + ".updateInfo", map);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////////태훈

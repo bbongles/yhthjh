@@ -821,6 +821,16 @@ input.radio {
 														onkeyup="s_checkPass(); return false;" /> 
 												</div>
 											 </div><!-- ### 완료 ###-->
+											 <!-- -------------------------------------------------------------- -->
+											
+											<div class="control-group">
+												<label class="phone-lbl" for="s_phone"> 전화번호/휴대폰번호 </label>
+												<div class="controls">
+												 <input required type="number" name="s_phone" 
+													class="input-xlarge" maxlength="28" 
+													placeholder="( - )은 빼고 입력하세요. ex) 01012345424" />
+												</div>
+											</div>
 
 											 
 											<!-- -------------------------------------------------------------- -->

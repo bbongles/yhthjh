@@ -70,7 +70,7 @@ img {
 </head>
 <body>
 
-	<h1>판매자 홈</h1>
+	<h1>바이어입장에서 보이는 판매자 홈</h1>
 	
 	<nav>
 	</nav>
@@ -123,7 +123,7 @@ img {
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
+/* $(document).ready(function(){
 	$('#sellerLogo').click(function() {
 		window.open("../seller/logoPop", 'window', 'width=400, height=380, resizable=no');
 	});
@@ -131,7 +131,7 @@ $(document).ready(function(){
 	$('#sellerInfo').click(function() {
 		window.open("../seller/infoPop", 'window', 'width=400, height=200, resizable=no');
 	});
-});
+}); */
 
 </script>
 </html>

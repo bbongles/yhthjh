@@ -144,6 +144,11 @@ $(document).ready(function(){
 	
 			<div class="detailInfo">   
     			<input type="hidden" name="s_id" value="${productVO.s_id }" />
+    			<input type="text" name="s_id" value="${productVO.s_id }" />
+    			
+    			<input type="hidden" id="queryForPList" value="${productVO.s_id }"/>
+    			<input type="hidden" name="s_id" value="${productVO.s_id }" />
+    			
     			<span>상품명 : </span>
     			${productVO.p_name }<br/><br/>
     			<input type="hidden" name="p_name" value="${productVO.p_name }" />
@@ -465,7 +470,8 @@ $(document).ready(function(){
     });
     
     $('#logoImg').click(function() {
-    	location = 'pList';
+    	var queryForPList = $("#queryForPList").val();
+    	location = 'pList?s_id='+queryForPList;
     });
     
 	</script>

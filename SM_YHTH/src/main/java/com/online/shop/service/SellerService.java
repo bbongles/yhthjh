@@ -27,10 +27,10 @@ public interface SellerService {
 	// 해당 상품명과 판매자명으로 상세 페이지에 이미지 객체 리턴
 	public abstract List<ImageVO> readImgByPno(int p_no);
 	// 판매자의 로고 이미지를 추가하는 기능
-	public abstract int updateLogo(SellerVO sVo);
+	public abstract int updateLogo(SellerVO sVo, String s_id);
 	// 판매자 아이디에 의한 판매자 정보 호출
 	public abstract SellerVO readSellerInfo(String s_id);
 	// 판매자의 정보를 추가하는 기능
-	public abstract int updateInfo(SellerVO sVo);
+	public abstract int updateInfo(SellerVO sVo, String s_id);
 	
 } // end interface SellerService

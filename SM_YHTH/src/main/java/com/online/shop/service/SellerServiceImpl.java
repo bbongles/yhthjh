@@ -42,9 +42,9 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public int updateLogo(SellerVO sVo) {
+	public int updateLogo(SellerVO sVo, String s_id) {
 		
-		return sellerDao.updateLogo(sVo);
+		return sellerDao.updateLogo(sVo, s_id);
 	}
 
 	@Override
@@ -54,9 +54,9 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public int updateInfo(SellerVO sVo) {
+	public int updateInfo(SellerVO sVo, String s_id) {
 		
-		return sellerDao.updateInfo(sVo);
+		return sellerDao.updateInfo(sVo, s_id);
 	}
 	
 	/////////////////////////////////////////////////////////////////////태훈
