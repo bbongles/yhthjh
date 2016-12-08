@@ -123,15 +123,7 @@ img {
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-/* $(document).ready(function(){
-	$('#sellerLogo').click(function() {
-		window.open("../seller/logoPop", 'window', 'width=400, height=380, resizable=no');
-	});
-	
-	$('#sellerInfo').click(function() {
-		window.open("../seller/infoPop", 'window', 'width=400, height=200, resizable=no');
-	});
-}); */
+
 
 </script>
 </html>

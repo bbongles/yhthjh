@@ -238,7 +238,7 @@ public class HomeController {
 		session.removeAttribute("login_id");
 		session.invalidate();	
 		logger.info("세션 비우기 성공!");
-		return "redirect:/"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
+		return "redirect:../"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
 	}
 	
 	/////////////////////////////////////////////// 셀러
@@ -417,7 +417,7 @@ public class HomeController {
 	         HttpSession session = request.getSession();
 	         session.invalidate();   
 	         logger.info("세션 비우기 성공!");
-	         return "redirect:login"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
+	         return "redirect:../"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
 	      }
 
 	

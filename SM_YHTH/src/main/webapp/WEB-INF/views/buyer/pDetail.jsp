@@ -429,7 +429,7 @@ $(document).ready(function(){
     </c:forEach>
 	
 	<div id="detailMenu">
-    	<input type="button" id="delProduct" value="상품삭제" />
+    	<!-- <input type="button" id="delProduct" value="상품삭제" /> -->
     	<input type="button" id="gotoList" value="목록으로" />
     </div>
     <br/>
