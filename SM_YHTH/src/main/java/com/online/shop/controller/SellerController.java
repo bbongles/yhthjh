@@ -354,7 +354,7 @@ public class SellerController {
 				return "redirect:main";
 			} else {
 				logger.info("로그인 실패");
-				return "redirect:../register";
+				return "redirect:../login";
 			}
 		}
 		@RequestMapping(value="logout", method=RequestMethod.GET)
