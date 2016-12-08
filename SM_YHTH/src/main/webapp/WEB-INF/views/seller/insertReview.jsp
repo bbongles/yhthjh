@@ -34,7 +34,7 @@
 </head>
 <body>
 
-	<form action="insertReview" id="frm" method="POST">
+	<form id="frm" method="POST">
 		<table>
 			<tr>
 				<th scope="row">구매 상품</th>
@@ -80,13 +80,11 @@
 		</table>
 		
 <!-- 		<input type="hidden" name="qna_no" value="0" /> -->
-		<input type="hidden" name="b_id" value="${b_id}" />
-		<input type="hidden" name="p_no" value="${p_no}" />
+			<input type="hidden" name="b_id" id="b_id" value="${b_id}" />
+			<input type="hidden" name="p_no" id="p_no" value="${p_no}" />
 <!-- 		<input type="hidden" name="qna_reply" value = "0" /> -->
 		
 			<input type="submit" id="btn_submit" value="등록">
-			<button type="button" id="btn_close">닫기</button>
-
 	</form>
 	
 	<script
@@ -104,17 +102,39 @@
 		});
 		
 		
- 		$('#btn_submit').click(function() {;
-
-		jQuery('#qnafrm').submit();
-		 /* window.close();
-		 window.opener.location.reload(); */
+ 		$('#btn_submit').click(function() {
+ 			event.preventDefault();
+	 		var url = 'insertReview';
+		    var rev_score = $('input:radio[name=rev_score]:checked').val();
+		    var rev_cont = $('#rev_cont').val();
+		    var b_id = $('#b_id').val();
+		    var p_no = $('#p_no').val();
+			  $.ajax({
+		          type:'post',
+		          url : url,
+		          headers:{
+		             'Content-Type': 'application/json',
+		               'X-HTTP-Method-Override': 'POST'
+		          },
+		           data: JSON.stringify({
+		        	   rev_score: rev_score,
+		        	   rev_cont: rev_cont,
+		        	   b_id: b_id,
+		        	   p_no: p_no
+		        	   
+		            }), 
+		           success: function(result) {
+		        	   if(result == 1) {
+		        		  window.close();
+		        		  window.opener.location.reload();
+		        		  alert('글 저장 성공!');
+		        	   } else{
+		        		   location.reload();
+		        		   alert('글 등록 실패.');
+		        	   }
+		           }
+		       });   
  		})
-		 
-		$('#btn_close').click(function() {
-			window.close();
-			window.opener.location.reload();
-		})
 		
 	})
 	

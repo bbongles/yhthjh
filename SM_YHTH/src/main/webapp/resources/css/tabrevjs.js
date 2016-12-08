@@ -2,21 +2,48 @@
  * 
  */
 
-		
+$(document).ready(function() {
+
 		$('#btnReviewInsert').click(function() {
 			//location = "insertReview";
 			var p_no = $('#pno').val();
 			var b_id = $('#bno').val();
-			//alert('p_no'+p_no+'/'+b_id);
 			window.open("insertReview?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
 		});
 		
-		$('.insertReply').click(function() {
+		$('.insertrevReply').click(function() {
 			var x = $(this).parent().attr('modData');
-			var frm = $('#revfrmmodify'+x);
-			frm.attr('action', 'insertrevReply');
-			frm.attr('mehtod', 'post');
-			frm.submit();
+			
+			var url = 'insertrevReply';
+			var rev_r_cont = $('#rev_r_cont'+x).val();
+		    var s_id = $('#s_id'+x).val();
+		    var p_no = $('#p_no'+x).val();
+		    var rev_no = $('#rev_no'+x).val();
+		    
+			  $.ajax({
+		          type:'post',
+		          url : url,
+		          headers:{
+		             'Content-Type': 'application/json',
+		             'X-HTTP-Method-Override': 'POST'
+		          },
+		           data: JSON.stringify({
+		        	   rev_r_cont: rev_r_cont,
+		        	   s_id: s_id,
+		        	   p_no: p_no,
+		        	   rev_no: rev_no
+		        	   
+		            }), 
+		           success: function(result) {
+		        	   if(result == 1) {
+		        		  location.reload();
+		        		  alert('답변 등록 성공!');
+		        	   } else{
+		        		  location.reload();
+		        		  alert('답변 등록 실패.');
+		        	   }
+		           }
+		       });s
 			
 		});
 		
@@ -31,25 +58,84 @@
 			/* $('#replyCont').attr("readonly",false); */
 			var x = $(this).parent().attr('modData');
 			alert("답변 내용 수정 가능! 완료 버튼 활성화")
-			$('#revreplyCont'+x).attr("readonly", false);
-			$('.updateRevReply1').show();
+			$('#rev_r_cont'+x).attr("readonly", false);
+			$('#rev_r_cont'+x).attr("required", true);
+			$('#updateRevReply1'+x).show();
 			$(this).hide();
 		});
 		
 		$('.updateRevReply1').click(function() {
 			var x = $(this).parent().attr('modData');
-			var frm = $('#updaterevfrm'+x);
-			frm.attr('action', 'updaterevReply');
-			frm.attr('mehtod', 'post');
-			frm.submit();
+			
+			var url = 'updaterevReply';
+			var rev_r_cont = $('#rev_r_cont'+x).val();
+		    var rev_r_no = $('#rev_r_no'+x).val();
+		    var s_id = $('#s_id'+x).val();
+		    var p_no = $('#p_no'+x).val();
+		    var rev_no = $('#rev_no'+x).val();
+		    
+			  $.ajax({
+		          type:'post',
+		          url : url,
+		          headers:{
+		             'Content-Type': 'application/json',
+		             'X-HTTP-Method-Override': 'POST'
+		          },
+		           data: JSON.stringify({
+		        	   rev_r_cont: rev_r_cont,
+		        	   rev_r_no: rev_r_no,
+		        	   s_id: s_id,
+		        	   p_no: p_no,
+		        	   rev_no: rev_no
+		        	   
+		            }), 
+		           success: function(result) {
+		        	   if(result == 1) {
+		        		  location.reload();
+		        		  alert('답변 수정 성공!');
+		        	   } else{
+		        		  location.reload();
+		        		  alert('답변 수정 실패.');
+		        	   }
+		           }
+		       });
 		})
 		
 		$('.deleteRevReply').click(function() {
 			var x = $(this).parent().attr('modData');
-			var frm = $('#updaterevfrm'+x);
-			frm.attr('action', 'deleterevReply');
-			frm.attr('mehtod', 'post');
-			frm.submit();
+			
+			var url = 'deleterevReply';
+			var rev_r_cont = $('#rev_r_cont'+x).val();
+		    var rev_r_no = $('#rev_r_no'+x).val();
+		    var s_id = $('#s_id'+x).val();
+		    var p_no = $('#p_no'+x).val();
+		    var rev_no = $('#rev_no'+x).val();
+		    
+			  $.ajax({
+		          type:'post',
+		          url : url,
+		          headers:{
+		             'Content-Type': 'application/json',
+		             'X-HTTP-Method-Override': 'POST'
+		          },
+		           data: JSON.stringify({
+		        	   rev_r_cont: rev_r_cont,
+		        	   rev_r_no: rev_r_no,
+		        	   s_id: s_id,
+		        	   p_no: p_no,
+		        	   rev_no: rev_no
+		        	   
+		            }), 
+		           success: function(result) {
+		        	   if(result == 1) {
+		        		  location.reload();
+		        		  alert('답변 삭제 성공!');
+		        	   } else{
+		        		  location.reload();
+		        		  alert('답변 삭제 실패.');
+		        	   }
+		           }
+		       });
 		});
 	
 	var frm = $('#pageForm');
@@ -68,10 +154,5 @@
 		frm.attr('method', 'get');
 		// 폼 양식을 서버로 전송
 		frm.submit();
-	});
-
-		if ('${insert_review_reply}' == 'success') {
-			alert('답변 등록 성공');
-		} else if ('${insert_review_reply}' == 'fail') {
-			alert('답변 등록  실패!');
-		}
+	});		
+})
