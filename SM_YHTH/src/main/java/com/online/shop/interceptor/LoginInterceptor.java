@@ -34,6 +34,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		if (id!=null) { // 세션에 기존 정보가 남아 있는 경우
 			return true;
 		} else { // 세션에 로그인 정보가 없는 경우
+
 			response.sendRedirect("/shop/login");
 			
 			return false;

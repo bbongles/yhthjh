@@ -139,7 +139,7 @@ public class SellerController {
 					
 					}
 				}
-				
+
 				model.addAttribute("listQnA", list);
 				model.addAttribute("listQnAR", listR);
 						
