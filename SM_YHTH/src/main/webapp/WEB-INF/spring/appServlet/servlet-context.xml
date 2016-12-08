@@ -57,10 +57,10 @@
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 		
-		<interceptor>
-			<mapping path=""/> <!--/board/register : Auth 인터셉터 -->
+		<!-- <interceptor>
+			<mapping path="/shop/login"/> /board/register : Auth 인터셉터
 			<beans:ref bean="AuthInterceptor"/>
-		</interceptor>
+		</interceptor> -->
 		
 		<interceptor>
 			<mapping path="/order/readyForBill"/>
@@ -68,8 +68,18 @@
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/cart/insertCart"/>
+			<mapping path="buyer/login"/>
 			<beans:ref bean="LoginInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/cart/insertCart"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/cart/insertCertForDirect"/>
+			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
 	</interceptors>

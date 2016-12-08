@@ -99,11 +99,6 @@ public class HomeController {
 	public String openRegister(){
 		return "/sudo_loginSelect";
 	}
-	
-	@RequestMapping(value="loginPop", method=RequestMethod.GET)
-	public String openLoginPop(){
-		return "/loginPop";
-	}
 
 	/* ----------------------------------------------------------------------------------------------------- */
 	
@@ -230,7 +225,7 @@ public class HomeController {
 
 	
 	@RequestMapping(value="buyer/login", method=RequestMethod.POST)
-	public String login(String b_id, String b_pw, HttpServletRequest request, String query){	
+	public void login(String b_id, String b_pw, HttpServletRequest request, String query, Model model){	
 		logger.info("login 컨트롤러 실행");
 		logger.info("b_id : "+b_id+" , b_pw : "+b_pw);
 		if (buyerService.isValidUser(b_id, b_pw)){
@@ -238,10 +233,19 @@ public class HomeController {
 			HttpSession session = request.getSession();
 			session.setAttribute("b_login_id", b_id);
 			logger.info("세션 저장 성공! key:login_id, 값 : "+b_id);
-			return "redirect:main";
+			
+			// login-post 요청을 보낸 주소를 저장
+			logger.info("query: " + query);
+			if (query != null && !query.equals("null")) {
+				// 요청 파라미터 query에 값이 들어 있는 경우
+				String dest = query.substring(4);
+				logger.info("dest : "+dest);
+				request.getSession().setAttribute("dest", dest);
+			}
+			
 		} else {
 			logger.info("로그인 실패");
-			return "redirect:../login";
+			
 		}
 	}
 	@RequestMapping(value="buyer/logout", method=RequestMethod.GET)

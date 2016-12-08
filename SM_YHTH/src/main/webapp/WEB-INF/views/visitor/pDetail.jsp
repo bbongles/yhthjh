@@ -172,7 +172,7 @@ $(document).ready(function(){
     			</select>
     			</div>
     			<br/><br/>
-    			<input type="submit" value="장바구니 담기">
+    			<input type="submit" value="장바구니 담기" id="insertCart">
     			<input type="button" value="바로 구매" id="directOrder">
     		</div>
     		<div class="sellerLogo">
@@ -459,10 +459,32 @@ $(document).ready(function(){
     	location = 'main';
     });
     
+    $('#insertCart').click(function() {
+    	event.preventDefault();
+    	var session = $("#b_id").val();
+    	console.log(session);
+    	if (session == '') {
+    		var ret = confirm('로그인이 필요합니다. 페이지 이동합니다.');
+    		console.log('ret=' + ret);
+    		if (ret == true) {
+    			$('#frm').submit();
+    		}
+    	}
+    });
+    
     $('#directOrder').click(function(){
-		$('#frm').attr('action', '/shop/cart/insertCertForDirect');
-		$('#frm').attr('method', 'post');
-		$('#frm').submit();
+		var session = $("#b_id").val();
+		console.log(session);
+		if (session == ''){
+			var ret = confirm('로그인이 필요합니다. 페이지 이동합니다.');
+    		console.log('ret=' + ret);
+    		
+			if(ret==true){
+			$('#frm').attr('action', '/shop/cart/insertCertForDirect');
+			$('#frm').attr('method', 'post');
+			$('#frm').submit();	
+			}
+		}
     });
     
     $('#logoImg').click(function() {

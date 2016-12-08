@@ -16,11 +16,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 		@Override
 		public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 				throws Exception {
-			logger.info("preHandle() 호출...");
+			logger.info("AuthInterceptor preHandle() 호출...");
 			
 			// 세션에 로그인 정보가 있는 지 확인
 			HttpSession session = request.getSession();
-			Object loginId = session.getAttribute("login_id");
+			Object loginId = session.getAttribute("b_login_id");
 			if (loginId == null) {
 				logger.info("로그인 되어 있지 않음.. 콘트롤러 실행 막음.. 로그인페이지로 이동");
 				
@@ -28,7 +28,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 				saveDestination(request);
 				
 				// 로그인 페이지로 이동...
-				response.sendRedirect("/shop01/login"); 
+				response.sendRedirect("/shop/login"); 
 				return false;
 			} else {
 				logger.info("로그인 되어있음, 콘트롤러 실행...로그인 아이디.. "+loginId);
@@ -49,7 +49,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 			if (query == null) {
 				query = "";
 			} else {
-				query +="?"+query;
+				query = "?" + query;
 			}
 			String dest = uri+query;
 			logger.info("요청 주소: "+dest);
