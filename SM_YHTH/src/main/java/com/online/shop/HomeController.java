@@ -99,6 +99,11 @@ public class HomeController {
 	public String openRegister(){
 		return "/sudo_loginSelect";
 	}
+	
+	@RequestMapping(value="loginPop", method=RequestMethod.GET)
+	public String openLoginPop(){
+		return "/loginPop";
+	}
 
 	/* ----------------------------------------------------------------------------------------------------- */
 	
@@ -494,6 +499,14 @@ public class HomeController {
 	  				model.addAttribute("relativeList", relativelist);
 	  		return "visitor/pDetail";
 	  	} // end productDetail() -> 판매자 홈에서 상품 번호를 참조해 상품 상세 페이지로 넘겨주는 역할 
+	      
+	      @RequestMapping(value="logout", method=RequestMethod.GET)
+	      public String logoutt(HttpServletRequest request){
+	         HttpSession session = request.getSession();
+	         session.invalidate();   
+	         logger.info("세션 비우기 성공!");
+	         return "redirect:/"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
+	      }
 	      
 	      
 
