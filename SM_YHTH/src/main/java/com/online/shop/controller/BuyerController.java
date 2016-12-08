@@ -280,4 +280,25 @@ public class BuyerController {
 		
 	} // end productDetail() -> 판매자 홈에서 상품 번호를 참조해 상품 상세 페이지로 넘겨주는 역할 
 	
+	///////////////////////////////////////////////////////////////////////////////////////////////////// 판매자홈
+	
+	@RequestMapping(value="/pList", method=RequestMethod.GET) // 맵핑 판매자 홈으로 바꾸고 나중에 쿼리 스트링 넘겨서 각각의 판매자 홈으로 넘어가게 해줘야함
+	public void sellerHome(Model model, String s_id, HttpServletRequest request) {
+		
+		SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
+		
+		// 전체 상품 리스트
+		List<ProductVO> productList = sellerService.readProductBySid(s_id);
+		logger.info("productList size: " + productList.size());
+		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
+		model.addAttribute("productList", productList);
+		
+
+		
+		// 판매자 정보를 Model 객체에 넣어서 View(jsp)에 전달
+		model.addAttribute("sellerInfo", sellerInfo);
+		
+		
+	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
+	
 } // end class
