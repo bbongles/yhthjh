@@ -83,7 +83,7 @@ public class BuyerController {
 		model.addAttribute("imageList", imageList);
 		
 		// 판매자 정보 받아오기
-		s_id = "seller1";
+		s_id = pVo.getS_id();
 		SellerVO sVo = sellerService.readSellerInfo(s_id);
 		// 판매자 정보를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("sVo", sVo);
