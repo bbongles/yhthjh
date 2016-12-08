@@ -8,7 +8,7 @@ $(document).ready(function() {
 			//location = "insertReview";
 			var p_no = $('#pno').val();
 			var b_id = $('#bno').val();
-			window.open("insertReview?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
+			window.open("../seller/insertReview?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
 		});
 		
 		$('.insertrevReply').click(function() {
