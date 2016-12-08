@@ -9,7 +9,8 @@ $(document).ready(function() {
 				//var url = "?p_no=" + ${productVO.p_no};
 				var p_no = $('#detail_p_no').val();
 				var b_id = $('#b_id').val();
-				window.open("insertQnA?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
+				alert('p:'+p_no+'b:'+b_id);
+				//window.open("insertQnA?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
 				
 			});
 			
