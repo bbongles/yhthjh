@@ -435,9 +435,9 @@ $(document).ready(function(){
     <br/>
 	
 	<script>
-    var lastImg = 'small'; //Set initial thumbnail and preview
+/*     var lastImg = 'small'; //Set initial thumbnail and preview
     document.getElementById('big').src = document.getElementById(lastImg).src;
-    document.getElementById(lastImg).className = "thumb selected";
+    document.getElementById(lastImg).className = "thumb selected"; */
 
     function preview(img) {
         document.getElementById(lastImg).className = "thumb normal";

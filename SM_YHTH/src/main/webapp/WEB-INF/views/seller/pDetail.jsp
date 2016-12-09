@@ -52,7 +52,7 @@ $(document).ready(function(){
 		display: inline-block;
 		margin-left: 300px;
 	}
-	.sellerLogo {
+	#sellerLogo {
 		float: left;
 		width: 150px;
 		height: 150px;
@@ -179,7 +179,7 @@ $(document).ready(function(){
     			<input type="submit" value="장바구니 담기">
     			<input type="button" value="바로 구매" id="directOrder">
     		</div>
-    		<div class="sellerLogo">
+    		<div id="sellerLogo">
     			<img id="logoImg" src="${sVo.s_logo }" />
     		</div>
     	</div>    
@@ -433,16 +433,21 @@ $(document).ready(function(){
     </c:forEach>
 	
 	<div id="detailMenu">
-    	<input type="button" id="delProduct" value="상품삭제" />
+	
+		<c:if test="${s_login_id eq productVO.s_id}">
+    	<input type="button" id="delProduct" value="상품삭제" /> 
+    </c:if>	
     	<input type="button" id="gotoList" value="목록으로" />
     </div>
     <br/>
-	
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script>
-    var lastImg = 'small'; //Set initial thumbnail and preview
-    document.getElementById('big').src = document.getElementById(lastImg).src;
-    document.getElementById(lastImg).className = "thumb selected";
-
+	 var lastImg = 'small'; //Set initial thumbnail and preview
+	
+   	/* document.getElementById('big').src = document.getElementById(lastImg).src;
+    document.getElementById(lastImg).className = "thumb selected";  */
+	 
     function preview(img) {
         document.getElementById(lastImg).className = "thumb normal";
         img.className = "thumb selected";
@@ -465,19 +470,19 @@ $(document).ready(function(){
     
     $('#directOrder').click(function(){
 		$('#frm').attr('action', '/shop/cart/insertCertForDirect');
-		$('#frm').attr('method', 'post');
+		$('#frm').attr('method', 'get');
 		$('#frm').submit();
     });
     
-    $('#logoImg').click(function() {
+    $('#sellerLogo').click(function() {
     	var queryForPList = $("#queryForPList").val();
-    	location = 'pList?s_id=' + queryForPList;
+    	location = 'pList?s_id='+queryForPList;
     });
     
+	
 	</script>
 	
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 	<script src="<c:url value='/resources/css/tabqnajs.js' />"></script>
 	<script src="<c:url value='/resources/css/tabrevjs.js' />"></script>
 	

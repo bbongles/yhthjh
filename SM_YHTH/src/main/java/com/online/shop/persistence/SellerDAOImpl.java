@@ -66,10 +66,12 @@ public class SellerDAOImpl implements SellerDAO {
 
 	@Override
 	public int updateLogo(SellerVO sVo, String s_id) {
-		logger.info("updateLogo() 호출: s_id = " + sVo.getS_id());
+		logger.info("updateLogo() 호출: s_id = " + s_id);
+		logger.info("updateLogo() 호출: s_logo = " + sVo.getS_logo());
+		
 		Map<String, Object> map = new HashMap<>();
-		map.put("s_id", (String) s_id);
-		map.put("sVo", (SellerVO) sVo);
+		map.put("s_id", s_id);
+		map.put("s_logo", sVo.getS_logo());
 		
 		return sqlSession.update(NAMESPACE + ".updateLogo", map);
 	}
@@ -85,10 +87,10 @@ public class SellerDAOImpl implements SellerDAO {
 
 	@Override
 	public int updateInfo(SellerVO sVo, String s_id) {
-		logger.info("updateInfo() 호출: s_id = " + sVo.getS_id());
+		logger.info("updateInfo() 호출: s_id = " + s_id);
 		Map<String, Object> map = new HashMap<>();
-		map.put("s_id", (String) s_id);
-		map.put("sVo", (SellerVO) sVo);
+		map.put("s_id", s_id);
+		map.put("s_info", sVo.getS_info());
 		return sqlSession.update(NAMESPACE + ".updateInfo", map);
 	}
 	

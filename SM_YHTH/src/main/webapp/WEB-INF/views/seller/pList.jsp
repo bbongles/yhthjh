@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 리스트</title>
+<title>셀러가보는 판매자홈</title>
 <style>
 ul {
 	list-style-type: none;
@@ -76,7 +76,7 @@ img {
 	<input type="text" id="ownSeller" value="${sellerInfo.s_id}"><br> <!-- TODO hidden으로 고치기(삭제 ㄴㄴㄴ) -->
 	로그인한 판매자 아이디 : 
 	<input type="text" id="loginedSeller" value="${s_login_id}"><!-- TODO hidden으로 고치기(삭제 ㄴㄴㄴ) -->
-	
+	<input type="hidden" name="s_id" value="${sellerInfo.s_id }" />
 	<nav>
 		<ul>
 		<c:if test="${s_login_id eq sellerInfo.s_id}">

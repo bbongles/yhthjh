@@ -429,15 +429,17 @@ $(document).ready(function(){
     </c:forEach>
 	
 	<div id="detailMenu">
-    	<!-- <input type="button" id="delProduct" value="상품삭제" /> -->
+	<c:if test="${s_login_id eq productVO.s_id}">
+    	<input type="button" id="delProduct" value="상품삭제" /> 
+    </c:if>	
     	<input type="button" id="gotoList" value="목록으로" />
     </div>
     <br/>
 	
 	<script>
     var lastImg = 'small'; //Set initial thumbnail and preview
-    document.getElementById('big').src = document.getElementById(lastImg).src;
-    document.getElementById(lastImg).className = "thumb selected";
+/*     document.getElementById('big').src = document.getElementById(lastImg).src;
+    document.getElementById(lastImg).className = "thumb selected"; */
 
     function preview(img) {
         document.getElementById(lastImg).className = "thumb normal";
@@ -461,7 +463,7 @@ $(document).ready(function(){
     
     $('#directOrder').click(function(){
 		$('#frm').attr('action', '/shop/cart/insertCertForDirect');
-		$('#frm').attr('method', 'post');
+		$('#frm').attr('method', 'get');
 		$('#frm').submit();
     });
     

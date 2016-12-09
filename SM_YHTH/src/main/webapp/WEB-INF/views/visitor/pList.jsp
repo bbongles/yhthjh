@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>바이어가 보는 판매자홈</title>
+<title>비로그인이 보는 판매자홈</title>
 <style>
 ul {
 	list-style-type: none;
@@ -70,7 +70,7 @@ img {
 </head>
 <body>
 
-	<h1>바이어입장에서 보이는 판매자 홈</h1>
+	<h1>비로그인 입장에서 보이는 판매자 홈</h1>
 	
 	<nav>
 	</nav>

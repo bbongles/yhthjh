@@ -1,5 +1,9 @@
 package com.online.shop.controller;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,22 +83,26 @@ public class ProductController {
 	} // end registerPOST()
 	
 	@RequestMapping(value="pDelete", method=RequestMethod.POST)
-	public String pDelete(int p_no, RedirectAttributes attr) {
+	public String pDelete(int p_no, RedirectAttributes attr, HttpServletRequest request) {
 		logger.info("pDelete() 호출 : p_no = " + p_no);
+			
+			int oResult = productService.deleteOptionByPno(p_no);
+			int iResult = productService.deleteImageByPno(p_no);
+			int pResult = productService.deleteProductByPno(p_no);
+			
+			HttpSession session = request.getSession();
+			
+			Object id = session.getAttribute("s_login_id");
+			String s_id = (String) id;
 		
-		int oResult = productService.deleteOptionByPno(p_no);
-		int iResult = productService.deleteImageByPno(p_no);
-		int pResult = productService.deleteProductByPno(p_no);
-		
-		
-		if (oResult == 1 && iResult == 1 && pResult == 1) {
-			attr.addFlashAttribute("delete_result", "success");
-		} else {
-			attr.addFlashAttribute("delete_result", "fail");
-		}
+//		if (oResult == 1 && iResult == 1 && pResult == 1) {
+//			attr.addFlashAttribute("delete_result", "success");
+//		} else {
+//			attr.addFlashAttribute("delete_result", "fail");
+//		}
 		attr.addFlashAttribute("p_no", p_no);
 		
-		return "redirect:pList";
+		return "redirect:pList?s_id=" +s_id;
 	}
 
 } // end class ProductController 
