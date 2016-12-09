@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="insertQnA" id="qnafrm" name="frmNm" method="POST" onsubmit="submit()">
+	<form id="qnafrm" name="frmNm" method="POST" >
 		<table>
 			<tr>
 				<th scope="row">문의 유형 &emsp;</th>
@@ -43,41 +43,60 @@
 
 			<tr>
 				<th scope="row">답변수신 메일 &emsp;</th>
-				<td><input type="text" id="qnaImail" name="b_email"
+				<td><input type="text" id="b_email" name="b_email"
 					placeholder="이메일주소 입력" value="test@test.com"/>b_id를 이용해 email주소를 select받아와 자동입력기능..구현해야함</td>
 					
 			</tr>
 
 		</table>
 		
-		<input type="hidden" name="b_id" value="${b_id}" />
-		<input type="hidden" name="p_no" value="${p_no}" />
+		<input type="hidden" name="b_id" value="${b_id}" id = "b_id" />
+		<input type="hidden" name="p_no" value="${p_no}" id = "p_no"/>
 		
-		<input type="submit" id="submitQnA" value="등록" />
+		<input type="submit" id="submitQnA" value="등록">
 
 	</form>
-	
-	<button type="button" id = "btn_submit" >닫기</button>
-	
+		
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
 	<script>
-
 		$(document).ready(function() {
-			
+	
 			$('#submitQnA').click(function() {
-
-				jQuery('#qnafrm').submit();
-				 /* window.close();
-				 window.opener.location.reload(); */
-			})
-			
-			
-			$('#btn_submit').click(function() {
-				/*window.close(); */
-				 /* document.forms['frmNm'].submit(); */
-				 window.opener.location.reload();
-				 window.open('','_self').close();
+				event.preventDefault();
+				var url = 'insertQnA';
+			    var qna_type = $('input:radio[name=qna_type]:checked').val();
+			    var qna_cont = $('#qna_cont').val();
+			    var b_email = $('#b_email').val();
+			    var b_id = $('#b_id').val();
+			    var p_no = $('#p_no').val();
+				  $.ajax({
+			          type:'post',
+			          url : url,
+			          headers:{
+			             'Content-Type': 'application/json',
+			               'X-HTTP-Method-Override': 'POST'
+			          },
+			           data: JSON.stringify({
+			        	   qna_type: qna_type,
+			        	   qna_cont: qna_cont,
+			        	   b_email: b_email,
+			        	   b_id: b_id,
+			        	   p_no: p_no
+			        	   
+			            }), 
+			           success: function(result) {
+			        	   if(result == 1) {
+			        		  window.close();
+			        		  window.opener.location.reload();
+			        		  alert('글 저장 성공!');
+			        	   } else{
+			        		   location.reload();
+			        		   alert('글 등록 실패.');
+			        	   }
+			           }
+			       });   
 			})
 		});
 	</script>
