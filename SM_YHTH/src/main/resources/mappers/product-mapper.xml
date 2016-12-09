@@ -13,7 +13,7 @@
 	
 	<!-- 상품 번호 추출 -->
 	<select id="selectProductNo" resultType="Integer">
-	select max(p_no) from s_tbl_product where s_id = 'seller1'
+	select max(p_no) from s_tbl_product where s_id = #{s_id}
 	</select>
 	
 	<!-- 옵션 정보 등록 -->
