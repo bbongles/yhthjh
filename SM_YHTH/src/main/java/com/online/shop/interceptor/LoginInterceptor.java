@@ -58,17 +58,32 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		logger.info("Logininterceptor postHandle() 호출...");
 		// 로그인 정보를 세션에 저장하기 위해서 미리정의
 		HttpSession session = request.getSession();
-		session.getAttribute(SESSION_ATTR_ID);
+		
+		BuyerVO result = (BuyerVO) modelAndView.getModel().get("b_login_id");
+		
+		if (result != null) { // DB에 있는 id/pw 정보와 일치
+			logger.info("로그인 성공");
+			// 세션에 로그인 성공 아이디만 저장
+			session.setAttribute(SESSION_ATTR_ID, result.getB_id());
+		
+			// 기존 요청 주소가 있는 경우는 해당 페이지로 이동
 			Object dest = session.getAttribute("dest");
 			if (dest != null) {
+				logger.info("dest 있음");
 				response.sendRedirect((String) dest);
 			} else {
+				logger.info("dest 없음");
 				// 저장된 요청 주소가 없는 경우에는 홈페이지로 이동
 				response.sendRedirect("/shop/login"); // 메인페이지로 리다이렉트	
 			}
-
+			
+		} else { // DB에 일치하는 회원 정보가 없는 경우
+			// 로그인 실패 -> 세션에 저장하는 정보는 없음
+			logger.info("로그인 실패");
 			response.sendRedirect("/shop/login");
-	
-		
+			
+		}
+
 	} // end postHandle()
-}// end class loginInterceptor
+	
+} // end class loginInterceptor

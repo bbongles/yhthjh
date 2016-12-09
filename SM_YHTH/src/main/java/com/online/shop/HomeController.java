@@ -234,6 +234,9 @@ public class HomeController {
 			session.setAttribute("b_login_id", b_id);
 			logger.info("세션 저장 성공! key:login_id, 값 : "+b_id);
 			
+			boolean result = buyerService.isValidUser(b_id, b_pw);
+			model.addAttribute("b_login_id", result);
+			
 			// login-post 요청을 보낸 주소를 저장
 			logger.info("query: " + query);
 			if (query != null && !query.equals("null")) {
