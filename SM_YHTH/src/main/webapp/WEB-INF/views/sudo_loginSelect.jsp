@@ -131,6 +131,8 @@
 									<div class="control-group">
 										<input tabindex="3" class="btn btn-inverse large"
 											type="submit" value="구매자 로그인">
+											<input type="hidden" name="query" 
+value="<%=request.getQueryString() %>" />
 										<hr>
 										<p class="reset">
 											구매자 <a tabindex="4" href="#"

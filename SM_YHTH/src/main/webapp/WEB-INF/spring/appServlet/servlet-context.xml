@@ -68,7 +68,7 @@
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="buyer/login"/>
+			<mapping path="/buyer/login"/>
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 		

@@ -90,6 +90,12 @@ public class SellerController {
 	
 	@RequestMapping(value="pDetail", method=RequestMethod.GET)
 	public void productDetail(int p_no, String s_id, String p_name, Integer page, QnaVO vo, Model model, HttpServletRequest request) {
+		
+//		// 로그인 한 판매자의 세션 유지
+//		HttpSession session = request.getSession();
+//		Object id = session.getAttribute("s_login_id");
+//		s_id = (String) id;
+		
 		// 상품 번호에 의한 각 상품의 전체 정보 받아오기
 		ProductVO pVo = sellerService.readItemByPno(p_no);
 		// 전체 정보를 Model 객체에 넣어서 View(jsp)에 전달
@@ -106,10 +112,7 @@ public class SellerController {
 		model.addAttribute("imageList", imageList);
 		
 		// 판매자 정보 받아오기
-		HttpSession session = request.getSession();
-		Object id = session.getAttribute("s_login_id");
-		s_id = (String) id;
-		SellerVO sVo = sellerService.readSellerInfo(s_id);
+		SellerVO sVo = sellerService.readSellerInfo(pVo.getS_id());
 		// 판매자 정보를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("sVo", sVo);
 		

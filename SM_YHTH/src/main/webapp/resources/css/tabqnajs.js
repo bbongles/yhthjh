@@ -6,29 +6,46 @@ $(document).ready(function() {
 	
 			$('#btnInsert').click(function() {
 				//location = "insertQnA";
-				//var url = "?p_no=" + ${productVO.p_no};
 				var p_no = $('#detail_p_no').val();
-				var b_id = $('#b_id').val();
-				alert('p:'+p_no+'b:'+b_id);
-				//window.open("insertQnA?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
+				//var b_id = $('#b_id').val();
+				var b_id = 'test';
+				window.open("../seller/insertQnA?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
 				
 			});
 			
-/*			$('#btnReviewInsert').click(function() {
-				//location = "insertReview";
-				var p_no = $('#detail_p_no').val();
-				var b_id = $('#b_id').val();
-				
-				window.open("insertReview?p_no="+128+"&b_id="+aaaa,"newWindow","width=800, height=300, left=150, top=150");
-			});
-	*/
-			
-			$('#insertReply').click(function() {
+			$('.insertReply').click(function() {
 				var x = $(this).parent().attr('modData');
-				var frm = $('#frm'+x);
- 				frm.attr('action', 'insertReply');
-				frm.attr('mehtod', 'post');
-				frm.submit();
+
+				var url = 'insertReply';
+				var qna_r_cont = $('#qna_r_cont'+x).val();
+			    var s_id = $('#s_id'+x).val();
+			    var p_no = $('#p_no'+x).val();
+			    var qna_no = $('#qna_no'+x).val();
+			    
+				  $.ajax({
+			          type:'post',
+			          url : url,
+			          headers:{
+			             'Content-Type': 'application/json',
+			             'X-HTTP-Method-Override': 'POST'
+			          },
+			           data: JSON.stringify({
+			        	   qna_r_cont: qna_r_cont,
+			        	   s_id: s_id,
+			        	   p_no: p_no,
+			        	   qna_no: qna_no
+			        	   
+			            }), 
+			           success: function(result) {
+			        	   if(result == 1) {
+			        		  location.reload();
+			        		  alert('답변 등록 성공!');
+			        	   } else{
+			        		  location.reload();
+			        		  alert('답변 등록 실패.');
+			        	   }
+			           }
+			       });
 				
 			});
 			
@@ -36,20 +53,49 @@ $(document).ready(function() {
 				/* $('#replyCont').attr("readonly",false); */
 				var x = $(this).parent().attr('modData');
 				alert("답변 내용 수정 가능! 완료 버튼 활성화")
-				$('#replyCont'+x).attr("readonly", false);
-				$('#replyCont'+x).attr("required", true);
-				$('.updateReply1').show();
+				$('#qna_r_cont'+x).attr("readonly", false);
+				$('#qna_r_cont'+x).attr("required", true);
+				$('#updateReply1'+x).show();
 				$(this).hide();
 			});
 			
 			$('.updateReply1').click(function() {
 				var x = $(this).parent().attr('modData');
-				var frm = $('#updatefrm'+x);
-				frm.attr('action', 'updateReply');
-				frm.attr('mehtod', 'post');
-				frm.submit();
 
+				var url = 'updateReply';
+				var qna_r_cont = $('#qna_r_cont'+x).val();
+			    var qna_r_no = $('#qna_r_no'+x).val();
+			    var s_id = $('#s_id'+x).val();
+			    var p_no = $('#p_no'+x).val();
+			    var qna_no = $('#qna_no'+x).val();
+			    
+				  $.ajax({
+			          type:'post',
+			          url : url,
+			          headers:{
+			             'Content-Type': 'application/json',
+			             'X-HTTP-Method-Override': 'POST'
+			          },
+			           data: JSON.stringify({
+			        	   qna_r_cont: qna_r_cont,
+			        	   qna_r_no: qna_r_no,
+			        	   s_id: s_id,
+			        	   p_no: p_no,
+			        	   qna_no: qna_no
+			        	   
+			            }), 
+			           success: function(result) {
+			        	   if(result == 1) {
+			        		  location.reload();
+			        		  alert('답변 수정 성공!');
+			        	   } else{
+			        		  location.reload();
+			        		  alert('답변 수정 실패.');
+			        	   }
+			           }
+			       });
 			})
+			
 			
 			$('.qnaDetail').click(function () {
 				var x = $(this).attr('modData');
@@ -60,10 +106,42 @@ $(document).ready(function() {
 			
 			$('.deleteReply').click(function() {
 				var x = $(this).parent().attr('modData');
-				var frm = $('#updatefrm'+x);
+/*				var frm = $('#updatefrm'+x);
 				frm.attr('action', 'deleteReply');
 				frm.attr('mehtod', 'post');
-				frm.submit();
+				frm.submit();*/
+				var url = 'deleteReply';
+				var qna_r_cont = $('#qna_r_cont'+x).val();
+			    var qna_r_no = $('#qna_r_no'+x).val();
+			    var s_id = $('#s_id'+x).val();
+			    var p_no = $('#p_no'+x).val();
+			    var qna_no = $('#qna_no'+x).val();
+			    
+				  $.ajax({
+			          type:'post',
+			          url : url,
+			          headers:{
+			             'Content-Type': 'application/json',
+			             'X-HTTP-Method-Override': 'POST'
+			          },
+			           data: JSON.stringify({
+			        	   qna_r_cont: qna_r_cont,
+			        	   qna_r_no: qna_r_no,
+			        	   s_id: s_id,
+			        	   p_no: p_no,
+			        	   qna_no: qna_no
+			        	   
+			            }), 
+			           success: function(result) {
+			        	   if(result == 1) {
+			        		  location.reload();
+			        		  alert('답변 삭제 성공!');
+			        	   } else{
+			        		  location.reload();
+			        		  alert('답변 삭제 실패.');
+			        	   }
+			           }
+			       });
 				
 			});
 			

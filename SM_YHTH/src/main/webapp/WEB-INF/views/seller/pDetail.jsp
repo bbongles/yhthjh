@@ -257,14 +257,14 @@ $(document).ready(function(){
 							
 							<form id = "frm${state.index }" method="post">
 							&emsp;&emsp;&emsp;<b>판매자 답변</b><br/>
-								<textarea cols="25" rows="3" name="qna_r_cont" id="replyCont"
+								<textarea cols="25" rows="3" name="qna_r_cont" id="qna_r_cont${state.index }"
 									placeholder="답변내용입력" required></textarea>
 								
-								<input type="hidden" name="s_id" id="s_id" value="sellerId" />
-								<input type="hidden" name="p_no" id="p_no" value="${productVO.p_no}" /> 
-								<input type="hidden" name="qna_no" id="qna_no" value="${list.qna_no }" />
+								<input type="hidden" name="s_id" id="s_id${state.index }" value="sellerId" />
+								<input type="hidden" name="p_no" id="p_no${state.index }" value="${productVO.p_no}" /> 
+								<input type="hidden" name="qna_no" id="qna_no${state.index }" value="${list.qna_no }" />
 								</form>						
-							<button type="submit" id="insertReply">저장</button>	
+							<button type="button" class="insertReply">저장</button>	
 							</div>
 	
 						</c:if>
@@ -278,15 +278,15 @@ $(document).ready(function(){
 							<form id = "updatefrm${state.index }" method="post">
 							&emsp;&emsp;&emsp;<b>판매자 답변</b><br/>
 							
-								<textarea cols="25" rows="3" id = "replyCont${state.index }" name = "qna_r_cont" readonly>${listr.qna_r_cont }</textarea>
-								<input type="hidden" name="qna_r_no" id="qna_r_no" value="${listr.qna_r_no }"/>
-								<input type="hidden" name="s_id" id="s_id" value="${listr.s_id }" /> 
-								<input type="hidden" name="p_no" id="p_no" value="${productVO.p_no}" /> 
-								<input type="hidden" name="qna_no" id="qna_no" value="${listr.qna_no }" />
+								<textarea cols="25" rows="3" id = "qna_r_cont${state.index }" name = "qna_r_cont" readonly>${listr.qna_r_cont }</textarea>
+								<input type="hidden" name="qna_r_no" id="qna_r_no${state.index }" value="${listr.qna_r_no }"/>
+								<input type="hidden" name="s_id" id="s_id${state.index }" value="${listr.s_id }" /> 
+								<input type="hidden" name="p_no" id="p_no${state.index }" value="${productVO.p_no}" /> 
+								<input type="hidden" name="qna_no" id="qna_no${state.index }" value="${listr.qna_no }" />
 							</form>
-							<button type="submit" class="updateReply">수정</button>
-							<button type="submit" class="updateReply1" style="display: none;">수정완료</button>
-							<button type="submit" class="deleteReply">삭제</button>
+							<button type="button" class="updateReply">수정</button>
+							<button type="button" id="updateReply1${state.index }" class="updateReply1" style="display: none;">수정완료</button>
+							<button type="button" class="deleteReply">삭제</button>
 							</div>
 							</c:if>
 							</c:forEach>
@@ -372,14 +372,14 @@ $(document).ready(function(){
 					<c:if test="${list.rev_reply eq 0 }">
 						<div modData="${state.index }">
 						<form id="revfrmmodify${state.index }" method="post" >
-							<input type="text" name="rev_r_cont" placeholder="답글작성" maxlength="100" required/>
+							<input type="text" name="rev_r_cont" id="rev_r_cont${state.index }" placeholder="답글작성" maxlength="100" required/>
 							
-							<input type="hidden" name="rev_no" value="${list.rev_no}"/>
-							<input type="hidden" name="s_id" value="sellerId1"/>
-							<input type="hidden" name="p_no" id="p_no" value="${productVO.p_no}" /> 
+							<input type="hidden" name="rev_no" id="rev_no${state.index }" value="${list.rev_no}"/>
+							<input type="hidden" name="s_id" id="s_id${state.index }" value="sellerId1"/>
+							<input type="hidden" name="p_no" id="p_no${state.index }" value="${productVO.p_no}" /> 
 						</form>
 						
-						<button type="submit" class="insertReply">저장</button>
+						<button type="submit" class="insertrevReply">저장</button>
 						</div>
 					</c:if>
 					
@@ -389,17 +389,17 @@ $(document).ready(function(){
 						
 						<div modData="${state.index }">
 						<form id = "updaterevfrm${state.index }" method="post">
-							<input type="text" id="revreplyCont${state.index }" name="rev_r_cont" 
+							<input type="text" id="rev_r_cont${state.index }" name="rev_r_cont" 
 							maxlength="100" value="${listr.rev_r_cont }" 
 							readonly style="border: none; color:maroon;"/>
-							<input type="hidden" name="rev_r_no" id="rev_r_no" value="${listr.rev_r_no }"/>
-							<input type="hidden" name="s_id" id="s_id" value="${listr.s_id }" /> 
-							<input type="hidden" name="p_no" id="p_no" value="${productVO.p_no}" /> 
-							<input type="hidden" name="rev_no" id="rev_no" value="${listr.rev_no }" />
+							<input type="hidden" name="rev_r_no" id="rev_r_no${state.index }" value="${listr.rev_r_no }"/>
+							<input type="hidden" name="s_id" id="s_id${state.index }" value="${listr.s_id }" /> 
+							<input type="hidden" name="p_no" id="p_no${state.index }" value="${productVO.p_no}" /> 
+							<input type="hidden" name="rev_no" id="rev_no${state.index }" value="${listr.rev_no }" />
 						</form>
 						
 						<button type="submit" class="updateRevReply">수정</button>
-						<button type="submit" class="updateRevReply1" style="display: none;">수정완료</button>
+						<button type="submit" id="updateRevReply1${state.index }" class="updateRevReply1" style="display: none;">수정완료</button>
 						<button type="submit" class="deleteRevReply">삭제</button>
 						</div>
 						</c:if>

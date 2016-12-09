@@ -260,7 +260,7 @@ $(document).ready(function(){
 								<input type="hidden" name="p_no" id="p_no" value="${productVO.p_no}" /> 
 								<input type="hidden" name="qna_no" id="qna_no" value="${list.qna_no }" />
 								</form>						
-							<button type="submit" id="insertReply">저장</button>	
+							<!-- <button type="submit" id="insertReply">저장</button>	 -->
 							</div>
 	
 						</c:if>
@@ -280,9 +280,9 @@ $(document).ready(function(){
 								<input type="hidden" name="p_no" id="p_no" value="${productVO.p_no}" /> 
 								<input type="hidden" name="qna_no" id="qna_no" value="${listr.qna_no }" />
 							</form>
-							<button type="submit" class="updateReply">수정</button>
+							<!-- <button type="submit" class="updateReply">수정</button>
 							<button type="submit" class="updateReply1" style="display: none;">수정완료</button>
-							<button type="submit" class="deleteReply">삭제</button>
+							<button type="submit" class="deleteReply">삭제</button> -->
 							</div>
 							</c:if>
 							</c:forEach>
@@ -375,7 +375,7 @@ $(document).ready(function(){
 							<input type="hidden" name="p_no" id="p_no" value="${productVO.p_no}" /> 
 						</form>
 						
-						<button type="submit" class="insertReply">저장</button>
+<!-- 						<button type="submit" class="insertReply">저장</button> -->
 						</div>
 					</c:if>
 					
@@ -394,9 +394,9 @@ $(document).ready(function(){
 							<input type="hidden" name="rev_no" id="rev_no" value="${listr.rev_no }" />
 						</form>
 						
-						<button type="submit" class="updateRevReply">수정</button>
+<!-- 						<button type="submit" class="updateRevReply">수정</button>
 						<button type="submit" class="updateRevReply1" style="display: none;">수정완료</button>
-						<button type="submit" class="deleteRevReply">삭제</button>
+						<button type="submit" class="deleteRevReply">삭제</button> -->
 						</div>
 						</c:if>
 						</c:forEach>
