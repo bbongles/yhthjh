@@ -471,7 +471,7 @@ $(document).ready(function(){
     
     $('#logoImg').click(function() {
     	var queryForPList = $("#queryForPList").val();
-    	location = 'pList?s_id='+queryForPList;
+    	location = 'pList?s_id=' + queryForPList;
     });
     
 	</script>

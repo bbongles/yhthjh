@@ -74,7 +74,7 @@ public class ProductController {
 			int iResult = productService.createImage(iVo);
 		}
 		
-		return "redirect:pList";
+		return "redirect:pList?s_id=" + pVo.getS_id();
 		
 	} // end registerPOST()
 	

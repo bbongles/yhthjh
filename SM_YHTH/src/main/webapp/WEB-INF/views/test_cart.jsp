@@ -80,7 +80,7 @@ tr td {
 	<!-- 주문하기  -->
 	<input type="hidden" value="" id="hiddenCartNums" name="c_no">
 	<input type="button" value="전체 주문하기" id="CartToController" />
-
+	<input type="button" value="쇼핑 계속하기" id="backToList" />
 </form>
 
    <script
@@ -253,7 +253,9 @@ tr td {
          updateTotalPrice();
       });
       
-      
+      $('#backToList').click(function() {
+    	 location = '../buyer/main' 
+      });
 
    </script>
 

@@ -58,7 +58,7 @@ textarea {
 
 		<!-- hidden type으로 입력될 값들... 판매자 이름은 로그인 정보와 합친 후 수정  -->
 		<!-- 판매자 이름 -->
-		<input type="hidden" name="s_id" value="seller1" />
+		<input type="hidden" name="s_id" value="${s_login_id }" />
 		<!-- 관심상품 -->
 		<input type="hidden" name="p_favo" value="0" />
 		<!-- 판매량 -->
